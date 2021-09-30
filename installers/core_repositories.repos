@@ -1,0 +1,73 @@
+repositories:
+
+#----------------------------------------------------------------------------
+# core libraries
+#----------------------------------------------------------------------------
+  stack/core/aerostack2_core:
+    type: git 
+    url: git@github.com:aerostack2-developers/aerostack_core.git
+    version: main
+
+  stack/core/as2_control_command_handlers:
+    type: git 
+    url: https://github.com/aerostack2-developers/as2_control_command_handlers.git
+    version: main
+  
+
+#----------------------------------------------------------------------------
+# Messages
+#----------------------------------------------------------------------------
+  stack/messages/aerostack2_msgs:
+    type: git 
+    url: https://github.com/aerostack2-developers/aerostack2_msgs.git
+    version: main
+
+#----------------------------------------------------------------------------
+# Behaviours    
+#----------------------------------------------------------------------------
+  stack/messages/as2_basic_behaviours:
+    type: git 
+    url: https://github.com/aerostack2-developers/as2_basic_behaviours.git
+    version: main
+
+#----------------------------------------------------------------------------
+# Hardware_interface
+#----------------------------------------------------------------------------
+  stack/hardware_interface/pixhawk_platform:
+    type: git 
+    url: https://github.com/aerostack2-developers/pixhawk_platform.git
+    version: main
+  
+  stack/hardware_interface/realsense_interface:
+    type: git 
+    url: https://github.com/aerostack2-developers/realsense_interface.git
+    version: main
+
+
+#----------------------------------------------------------------------------
+# Thirdparty
+#----------------------------------------------------------------------------
+  thirdparty/px4_required_packages:
+    type: git 
+    url: https://github.com/aerostack2-developers/px4_required_packages.git
+    version: main
+
+
+#installer/
+#configs/
+#stack/
+#    core/
+#    libraries/   
+#    hardware_interface/
+#    behaviours/
+#    messages/
+#stack_devel/
+#thirdparty/
+
+
+
+
+
+
+
+
