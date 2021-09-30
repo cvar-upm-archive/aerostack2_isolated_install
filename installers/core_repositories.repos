@@ -5,7 +5,7 @@ repositories:
 #----------------------------------------------------------------------------
   stack/core/aerostack2_core:
     type: git 
-    url: git@github.com:aerostack2-developers/aerostack_core.git
+    url: https://github.com/aerostack2-developers/aerostack_core.git
     version: main
 
   stack/core/as2_control_command_handlers:
