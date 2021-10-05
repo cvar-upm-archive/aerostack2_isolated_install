@@ -5,10 +5,10 @@ commands:
 
 $ mkdir -p ${HOME}/aerostack2_ws/src/ && cd ${HOME}/aerostack2_ws/src/
 
-$ git clone REPOSITORY
+$ git clone https://github.com/aerostack2-developers/aerostack2.git
 
-$ cd REPOSITORY
+$ cd aerostack2
 
-$ cd install && chmod +x *
+$ cd installers && chmod +x *
 
 $ ./setup_aerostack2.bash
