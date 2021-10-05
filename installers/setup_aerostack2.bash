@@ -19,8 +19,8 @@ fi
 
 #TODO: handle error in dependencies
 
-bash $BASEDIR/install_core_dependencies.bash
-
+#bash $BASEDIR/install_core_dependencies.bash
+echo "todo bien"
 if [ $? -eq 0 ]; then
    echo OK
 else
