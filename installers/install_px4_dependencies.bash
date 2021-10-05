@@ -1,20 +1,14 @@
 #!/bin/bash
 
-echo $(pwd)
-
-sudo apt install tmux pyhton3-pip -y && \
-sudo apt install python3-colcon-common-extensions -y && \
-sudo apt install ros-${ROS_DISTRO}-ament-cmake-clang-format -y &&\
-sudo apt install ros-${ROS_DISTRO}-eigen3-cmake-module -y &&\
-sudo pip3 install -U empy pyros-genmsg setuptools
-
-
 # Todo: add this to a package installer
 #---------------------------------------
 
-cd ..
+# install not ros dependencies
+
+cd ../../
 mkdir thirdparty/
 cd thirdparty
+touch COLCON_IGNORE
 
 sudo apt install openjdk-11-jdk
 
@@ -22,6 +16,29 @@ git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git -b v1.0.4 \
     && cd Fast-DDS-Gen \
     && ./gradlew assemble \
     && sudo ./gradlew install
+
+source ~/.bashrc
+
+cd ../
+
+git clone https://github.com/eProsima/foonathan_memory_vendor.git \
+    && cd foonathan_memory_vendor \
+    && mkdir build && cd build \
+    && cmake .. \
+    && sudo cmake --build . --target install 
+
+cd ../
+cd ../
+
+# CHECK IF THIS IS NECESSARY
+git clone --recursive https://github.com/eProsima/Fast-DDS.git -b v2.0.0 ~/FastDDS-2.0.0 \
+&& cd ~/FastDDS-2.0.0\
+&& mkdir build && cd build\
+&& cmake -DTHIRDPARTY=ON -DSECURITY=ON .. \
+&& make -j$(nproc --all) \
+&& sudo make install 
+
+source ~/.bashrc
 
 # Check FastRTPSGen version
 fastrtpsgen_version_out=""
@@ -44,6 +61,7 @@ else
 fi
 
 
+
 # Todo: add this to a package installer
 #---------------------------------------
 
@@ -64,3 +82,5 @@ fi
 
 sudo wget https://raw.githubusercontent.com/IntelRealSense/librealsense/master/config/99-realsense-libusb.rules --directory /etc/udev/rules.d/ 
 #----------------------------------------
+
+

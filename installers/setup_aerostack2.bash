@@ -49,8 +49,7 @@ AEROSTACK2_STACK="$(pwd)"
 echo ${AEROSTACK2_WORKSPACE}
 echo ${AEROSTACK2_STACK}
 
-
-grep -q "source $AEROSTACK2_WORKSPACE/devel/setup.bash" $HOME/.bashrc || echo "source $AEROSTACK2_WORKSPACE/devel/setup.bash" >> $HOME/.bashrc
+grep -q "source $AEROSTACK2_WORKSPACE/install/setup.bash" $HOME/.bashrc || echo "source $AEROSTACK2_WORKSPACE/install/setup.bash" >> $HOME/.bashrc
 sed -i '/export AEROSTACK2_STACK/d' $HOME/.bashrc && echo "export AEROSTACK2_STACK=${AEROSTACK2_STACK}" >> $HOME/.bashrc
 sed -i '/export AEROSTACK2_WORKSPACE/d' $HOME/.bashrc && echo "export AEROSTACK2_WORKSPACE=${AEROSTACK2_WORKSPACE}" >> $HOME/.bashrc
 
