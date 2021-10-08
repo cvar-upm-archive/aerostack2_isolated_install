@@ -23,10 +23,7 @@ tmux rename-window -t $SESSION:0 'RTPS interface'
 tmux send-keys -t $SESSION:0 "micrortps_agent -t UDP" C-m
 
 tmux new-window -t $SESSION:1 -n 'pixhawk interface'
-tmux send-keys "ros2 run pixhawk_platform pixhawk_platform_node" C-m
-
-tmux new-window -t $SESSION:2 -n 'realsense t265'
-tmux send-keys "ros2 run realsense_interface realsense_interface_node --ros-args -r /drone0/rs_t265/odom:=/drone0/self_localization/odom" C-m
+tmux send-keys "ros2 run pixhawk_platform pixhawk_platform_node --ros-args -r /drone0/platform/odometry:=/drone0/self_localization/odom" C-m
 
 tmux new-window -t $SESSION:3 -n 'basic behaviours'
 tmux send-keys "ros2 launch as2_basic_behaviours basic_behaviours_launch.py" C-m
