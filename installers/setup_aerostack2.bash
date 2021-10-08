@@ -45,6 +45,7 @@ echo "-------------------------------------------------------"
 # TODO: use folder as a parameter
 AEROSTACK2_WORKSPACE="$(dirname $(dirname "$(pwd)"))"
 AEROSTACK2_STACK="$(pwd)"
+AEROSTACK2_PROJECTS="$AEROSTACK2_STACK/projects/"
 
 echo ${AEROSTACK2_WORKSPACE}
 echo ${AEROSTACK2_STACK}
@@ -52,6 +53,7 @@ echo ${AEROSTACK2_STACK}
 grep -q "source $AEROSTACK2_WORKSPACE/install/setup.bash" $HOME/.bashrc || echo "source $AEROSTACK2_WORKSPACE/install/setup.bash" >> $HOME/.bashrc
 sed -i '/export AEROSTACK2_STACK/d' $HOME/.bashrc && echo "export AEROSTACK2_STACK=${AEROSTACK2_STACK}" >> $HOME/.bashrc
 sed -i '/export AEROSTACK2_WORKSPACE/d' $HOME/.bashrc && echo "export AEROSTACK2_WORKSPACE=${AEROSTACK2_WORKSPACE}" >> $HOME/.bashrc
+sed -i '/export AEROSTACK2_PROJECTS/d' $HOME/.bashrc && echo "export AEROSTACK2_PROJECTS=${AEROSTACK2_PROJECTS}" >> $HOME/.bashrc
 
 
 cd $AEROSTACK2_WORKSPACE
