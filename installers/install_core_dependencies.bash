@@ -8,7 +8,8 @@ sudo apt install ros-${ROS_DISTRO}-ament-cmake-clang-format -y &&\
 sudo apt install ros-${ROS_DISTRO}-eigen3-cmake-module -y &&\
 sudo apt-get install -y libeigen3-dev -y &&\
 sudo pip3 install -U empy pyros-genmsg setuptools &&\
-sudo apt install libgoogle-glog-dev -y &&\
+sudo apt install libgoogle-glog* -y &&\
+sudo apt install libgflags* -y &&\
 sudo apt install libnlopt-cxx-dev -y &&\
 sudo apt install libyaml-cpp* -y &&\
 sudo usermod -a -G dialout $USER &&\

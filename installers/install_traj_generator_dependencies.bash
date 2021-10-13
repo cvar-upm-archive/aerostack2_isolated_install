@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd $AEROSTACK_WORKSPACE/src/thirdparty
+cd $AEROSTACK2_WORKSPACE/src/thirdparty
 
 git clone https://github.com/google/glog.git &&\
     cd glog &&\
