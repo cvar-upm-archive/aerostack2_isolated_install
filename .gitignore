@@ -1,2 +1,4 @@
 stack/
 thirdparty/
+.vscode/
+*~
