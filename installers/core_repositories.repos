@@ -25,7 +25,7 @@ repositories:
 #----------------------------------------------------------------------------
 # Behaviours    
 #----------------------------------------------------------------------------
-  stack/messages/as2_basic_behaviours:
+  stack/behaviours/as2_basic_behaviours:
     type: git 
     url: https://github.com/aerostack2-developers/as2_basic_behaviours.git
     version: main
@@ -42,6 +42,48 @@ repositories:
     type: git 
     url: https://github.com/aerostack2-developers/realsense_interface.git
     version: main
+
+#----------------------------------------------------------------------------
+# Motion_control
+#----------------------------------------------------------------------------
+  stack/motion_control/differential_flatness_based_controller:
+    type: git 
+    url: https://github.com/aerostack2-developers/differential_flatness_based_controller.git
+    version: main
+
+  stack/motion_control/polynomial_trajectory_generator:
+    type: git 
+    url: https://github.com/aerostack2-developers/polynomial_trajectory_generator.git
+    version: main
+
+  stack/motion_control/normalize_thrust:
+    type: git 
+    url: https://github.com/aerostack2-developers/normalize_thrust.git
+    version: main
+
+
+#----------------------------------------------------------------------------
+# Motion_control
+#----------------------------------------------------------------------------
+  stack/motion_control/python_interface:
+    type: git 
+    url: https://github.com/aerostack2-developers/python_interface.git
+    version: main
+  
+#----------------------------------------------------------------------------
+# Hardware_interface
+#----------------------------------------------------------------------------
+  stack/hardware_interface/pixhawk_platform:
+    type: git 
+    url: https://github.com/aerostack2-developers/pixhawk_platform.git
+    version: main
+  
+  stack/hardware_interface/realsense_interface:
+    type: git 
+    url: https://github.com/aerostack2-developers/realsense_interface.git
+    version: main
+
+
 
 
 #----------------------------------------------------------------------------
