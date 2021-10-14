@@ -63,9 +63,9 @@ repositories:
 
 
 #----------------------------------------------------------------------------
-# Motion_control
+# Interface
 #----------------------------------------------------------------------------
-  stack/motion_control/python_interface:
+  stack/user_interface/python_interface:
     type: git 
     url: https://github.com/aerostack2-developers/python_interface.git
     version: main
