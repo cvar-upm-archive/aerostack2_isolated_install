@@ -1,14 +1,24 @@
 #!/bin/bash
 
-#NUMID_DRONE=1
-#NETWORK_ROSCORE=$1
+if [ -z "$1" ]
+then
+    if [ -z "$AEROSTACK2_REAL_DRONE_ID" ] 
+        then
+        echo "no drone id was given, using default real drone_id = \"drone0\" "
+        DRONE_ID_NAMESPACE="drone0"
+    else
+        DRONE_ID_NAMESPACE=$AEROSTACK2_REAL_DRONE_ID
+    fi
+else
+DRONE_ID_NAMESPACE=$1
+fi
+
+echo "using \"/$DRONE_ID_NAMESPACE/\" namespace"
 
 SESSION=$USER
 
-UAV_MASS=1.2
-MAV_NAME=f330_pixhawk
-
-#export AEROSTACK_PROJECT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+UAV_MASS=1.5
+UAV_MAX_THRUST=20.0
 
 # Kill any previous session (-t -> target session, -a -> all other sessions )
 tmux kill-session -t $SESSION
@@ -20,21 +30,26 @@ tmux -2 new-session -d -s $SESSION
 # Create roscore 
 # send-keys writes the string into the sesssion (-t -> target session , C-m -> press Enter Button)
 tmux rename-window -t $SESSION:0 'RTPS interface'
-tmux send-keys -t $SESSION:0 "micrortps_agent -d /dev/ttyUSB0" C-m
+tmux send-keys -t $SESSION:0 "micrortps_agent  -d /dev/ttyUSB0 -n $DRONE_ID_NAMESPACE" C-m
 
 tmux new-window -t $SESSION:1 -n 'pixhawk interface'
-tmux send-keys "ros2 run pixhawk_platform pixhawk_platform_node" C-m
+tmux send-keys "ros2 launch pixhawk_platform pixhawk_platform_launch.py \
+    drone_id:=$DRONE_ID_NAMESPACE \
+    mass:=$UAV_MASS \
+    max_thrust:=$UAV_MAX_THRUST \
+    simulation_mode:=false" C-m
 
-tmux new-window -t $SESSION:2 -n 'realsense t265'
-tmux send-keys "ros2 run realsense_interface realsense_interface_node --ros-args -r /drone0/rs_t265/odom:=/drone0/self_localization/odom" C-m
+tmux new-window -t $SESSION:2 -n 'df_controller'
+tmux send-keys "ros2 launch differential_flatness_based_controller differential_flattness_controller_launch.py \
+    drone_id:=$DRONE_ID_NAMESPACE " C-m
 
-tmux new-window -t $SESSION:3 -n 'follow path behaviours'
-tmux send-keys "ros2 run as2_basic_behaviours follow_path_behaviour_node" C-m
+tmux new-window -t $SESSION:3 -n 'traj_generator'
+tmux send-keys "ros2 launch trajectory_generator trajectory_generator_launch.py  \
+    drone_id:=$DRONE_ID_NAMESPACE " C-m
 
-tmux new-window -t $SESSION:4 -n 'df_controller'
-tmux send-keys "ros2 run differential_flatness_based_controller differential_flatness_based_controller_node" C-m
+tmux new-window -t $SESSION:4 -n 'follow_path_behaviour'
+tmux send-keys "ros2 launch as2_basic_behaviours follow_path_behaviours_launch.py \
+    drone_id:=$DRONE_ID_NAMESPACE " C-m
 
-tmux new-window -t $SESSION:5 -n 'traj_generator'
-tmux send-keys "ros2 run trajectory_generator trajectory_generator_node" C-m
 
-tmux attach-session -t $SESSION:0
+tmux attach-session -t $SESSION:1
