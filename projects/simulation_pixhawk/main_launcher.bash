@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#NUMID_DRONE=1
-#NETWORK_ROSCORE=$1
-
-
 if [ -z "$1" ]
 then
     if [ -z "$AEROSTACK2_SIMULATION_DRONE_ID" ] 
