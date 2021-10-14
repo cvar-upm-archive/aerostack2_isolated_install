@@ -28,7 +28,13 @@ tmux send-keys "ros2 run pixhawk_platform pixhawk_platform_node" C-m
 tmux new-window -t $SESSION:2 -n 'realsense t265'
 tmux send-keys "ros2 run realsense_interface realsense_interface_node --ros-args -r /drone0/rs_t265/odom:=/drone0/self_localization/odom" C-m
 
-tmux new-window -t $SESSION:3 -n 'basic behaviours'
-tmux send-keys "ros2 launch as2_basic_behaviours basic_behaviours_launch.py" C-m
+tmux new-window -t $SESSION:3 -n 'follow path behaviours'
+tmux send-keys "ros2 run as2_basic_behaviours follow_path_behaviour_node" C-m
+
+tmux new-window -t $SESSION:4 -n 'df_controller'
+tmux send-keys "ros2 run differential_flatness_based_controller differential_flatness_based_controller_node" C-m
+
+tmux new-window -t $SESSION:5 -n 'traj_generator'
+tmux send-keys "ros2 run trajectory_generator trajectory_generator_node" C-m
 
 tmux attach-session -t $SESSION:0
