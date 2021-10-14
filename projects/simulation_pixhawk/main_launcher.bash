@@ -25,7 +25,6 @@ SESSION=$USER
 UAV_MASS=1.5
 UAV_MAX_THRUST=10.0
 
-
 # Kill any previous session (-t -> target session, -a -> all other sessions )
 tmux kill-session -t $SESSION
 tmux kill-session -a
@@ -56,9 +55,6 @@ tmux send-keys "ros2 launch trajectory_generator trajectory_generator_launch.py 
 tmux new-window -t $SESSION:4 -n 'follow_path_behaviour'
 tmux send-keys "ros2 launch as2_basic_behaviours follow_path_behaviours_launch.py \
     drone_id:=$DRONE_ID_NAMESPACE " C-m
-
-
-
 
 
 tmux attach-session -t $SESSION:1
