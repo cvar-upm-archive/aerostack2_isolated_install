@@ -56,10 +56,10 @@ repositories:
     url: https://github.com/aerostack2-developers/polynomial_trajectory_generator.git
     version: main
 
-  stack/motion_control/normalize_thrust:
-    type: git 
-    url: https://github.com/aerostack2-developers/normalize_thrust.git
-    version: main
+#  stack/motion_control/normalize_thrust:
+#    type: git 
+#    url: https://github.com/aerostack2-developers/normalize_thrust.git
+#    version: main
 
 
 #----------------------------------------------------------------------------
