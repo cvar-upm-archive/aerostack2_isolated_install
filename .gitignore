@@ -1,4 +1,6 @@
 stack/
 thirdparty/
 .vscode/
+rosbags/
 *~
+*.zip
