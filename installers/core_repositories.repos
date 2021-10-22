@@ -43,6 +43,12 @@ repositories:
     url: https://github.com/aerostack2-developers/realsense_interface.git
     version: main
 
+
+  stack/hardware_interface/basic_tf_tree_generator:
+    type: git 
+    url: https://github.com/aerostack2-developers/basic_tf_tree_generator.git
+    version: main
+
 #----------------------------------------------------------------------------
 # Motion_control
 #----------------------------------------------------------------------------
