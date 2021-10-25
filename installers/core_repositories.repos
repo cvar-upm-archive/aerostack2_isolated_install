@@ -30,6 +30,11 @@ repositories:
     url: https://github.com/aerostack2-developers/as2_basic_behaviours.git
     version: main
 
+  stack/behaviours/gates_to_waypoints:
+    type: git 
+    url: https://github.com/aerostack2-developers/gates_to_waypoints.git
+    version: main
+
 #----------------------------------------------------------------------------
 # Hardware_interface
 #----------------------------------------------------------------------------
