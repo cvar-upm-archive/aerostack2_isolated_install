@@ -19,7 +19,7 @@ echo "using \"/$DRONE_ID_NAMESPACE/\" namespace"
 SESSION=$USER
 
 UAV_MASS=1.5
-UAV_MAX_THRUST=10.0
+UAV_MAX_THRUST=15.0
 
 # Kill any previous session (-t -> target session, -a -> all other sessions )
 tmux kill-session -t $SESSION
@@ -57,7 +57,8 @@ tmux send-keys "ros2 launch aruco_gate_detector aruco_gate_detector_launch.py \
     drone_id:=$DRONE_ID_NAMESPACE " C-m
     
 tmux new-window -t $SESSION:6 -n 'static_transform_publisher'
-tmux send-keys "ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 odom  base_link " C-m
+tmux send-keys "ros2 launch basic_tf_tree_generator basic_tf_tree_generator_launch.py \
+    drone_id:=$DRONE_ID_NAMESPACE" C-m
 
 tmux new-window -t $SESSION:7 -n 'gates_to_waypoints'
 tmux send-keys "ros2 run gates_to_waypoints gates_to_waypoints --ros-args -r __ns:=/$DRONE_ID_NAMESPACE " C-m
