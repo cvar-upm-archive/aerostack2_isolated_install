@@ -11,7 +11,7 @@ AEROSTACK_PROJECT=$(pwd)
 #SIMULATE WITH CAMERA
 
 
-WORLD_FILE="${AEROSTACK_PROJECT}/configs/gazebo/worlds/frames2.world"
+WORLD_FILE="${AEROSTACK_PROJECT}/configs/gazebo/worlds/frames_manual.world"
 UAV_NAME="iris"
 MODEL_FOLDER="${AEROSTACK_PROJECT}/configs/gazebo/models"
 
@@ -30,5 +30,5 @@ export GAZEBO_PLUGIN_PATH=$PX4_FOLDER/build/px4_sitl_rtps/build_gazebo
 source $PX4_FOLDER/build/px4_sitl_rtps/build_gazebo/setup.sh
 
 # bash launch_simulator.bash
-$PX4_FOLDER/Tools/sitl_run.sh "$PX4_FOLDER/build/px4_sitl_rtps/bin/px4" none gazebo none none $PX4_FOLDER $PX4_FOLDER/build/px4_sitl_rtps
+$PX4_FOLDER/Tools/sitl_run.sh "$PX4_FOLDER/build/px4_sitl_rtps/bin/px4" none gazebo none $WORLD_FILE $PX4_FOLDER $PX4_FOLDER/build/px4_sitl_rtps
 pkill gzserver;pkill gzclient
