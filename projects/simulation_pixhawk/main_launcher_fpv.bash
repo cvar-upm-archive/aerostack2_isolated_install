@@ -61,7 +61,7 @@ tmux send-keys "ros2 launch basic_tf_tree_generator basic_tf_tree_generator_laun
     drone_id:=$DRONE_ID_NAMESPACE" C-m
 
 tmux new-window -t $SESSION:7 -n 'gates_to_waypoints'
-tmux send-keys "ros2 run gates_to_waypoints gates_to_waypoints --ros-args -r __ns:=/$DRONE_ID_NAMESPACE " C-m
+tmux send-keys "ros2 run gates_to_waypoints gates_to_waypoints_node --ros-args -r __ns:=/$DRONE_ID_NAMESPACE " C-m
 
 
 tmux attach-session -t $SESSION:1
