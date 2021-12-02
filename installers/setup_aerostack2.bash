@@ -50,11 +50,9 @@ AEROSTACK2_PROJECTS="$AEROSTACK2_STACK/projects/"
 echo ${AEROSTACK2_WORKSPACE}
 echo ${AEROSTACK2_STACK}
 
-grep -q "source $AEROSTACK2_WORKSPACE/install/setup.bash" $HOME/.bashrc || echo "source $AEROSTACK2_WORKSPACE/install/setup.bash" >> $HOME/.bashrc
+# grep -q "source $AEROSTACK2_WORKSPACE/install/setup.bash" $HOME/.bashrc || echo "source $AEROSTACK2_WORKSPACE/install/setup.bash" >> $HOME/.bashrc
 sed -i '/export AEROSTACK2_STACK/d' $HOME/.bashrc && echo "export AEROSTACK2_STACK=${AEROSTACK2_STACK}" >> $HOME/.bashrc
-sed -i '/export AEROSTACK2_WORKSPACE/d' $HOME/.bashrc && echo "export AEROSTACK2_WORKSPACE=${AEROSTACK2_WORKSPACE}" >> $HOME/.bashrc
-sed -i '/export AEROSTACK2_PROJECTS/d' $HOME/.bashrc && echo "export AEROSTACK2_PROJECTS=${AEROSTACK2_PROJECTS}" >> $HOME/.bashrc
-
+sed -i '/source $AEROSTACK2_STACK/d' $HOME/.bashrc && echo 'source $AEROSTACK2_STACK/scripts/setup_env.bash' >> $HOME/.bashrc
 
 cd $AEROSTACK2_WORKSPACE
 echo "colcon build"

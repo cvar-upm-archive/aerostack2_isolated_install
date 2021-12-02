@@ -1,4 +1,6 @@
 stack/
+__pycache__/
+ros1_stack/
 thirdparty/
 .vscode/
 rosbags/
