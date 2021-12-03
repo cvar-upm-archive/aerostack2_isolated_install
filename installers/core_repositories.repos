@@ -3,9 +3,9 @@ repositories:
 #----------------------------------------------------------------------------
 # core libraries
 #----------------------------------------------------------------------------
-  stack/core/aerostack2_core:
+  stack/core/as2_core:
     type: git 
-    url: https://github.com/aerostack2-developers/aerostack2_core.git
+    url: https://github.com/aerostack2-developers/as2_core.git
     version: main
 
   stack/core/as2_control_command_handlers:
@@ -17,9 +17,9 @@ repositories:
 #----------------------------------------------------------------------------
 # Messages
 #----------------------------------------------------------------------------
-  stack/messages/aerostack2_msgs:
+  stack/messages/as2_msgs:
     type: git 
-    url: https://github.com/aerostack2-developers/aerostack2_msgs.git
+    url: https://github.com/aerostack2-developers/as2_msgs.git
     version: main
 
 #----------------------------------------------------------------------------
@@ -57,6 +57,11 @@ repositories:
     type: git 
     url: https://github.com/aerostack2-developers/aruco_gate_detector.git
     version: main
+    
+  stack/hardware_interface/mocap_optitrack:
+    type: git 
+    url: https://github.com/ros-drivers/mocap_optitrack.git
+    version: foxy-devel
 
 #----------------------------------------------------------------------------
 # Motion_control

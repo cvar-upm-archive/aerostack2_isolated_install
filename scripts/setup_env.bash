@@ -7,7 +7,7 @@ if [ -z "$AEROSTACK2_STACK" ]; then
   exit 1
 fi
 
-export AEROSTACK2_SIMULATION_DRONE_ID=drone_sim_0 
+export AEROSTACK2_SIMULATION_DRONE_ID=drone_sim_11 
 
 export AEROSTACK2_WORKSPACE=$(dirname $(dirname ${AEROSTACK2_STACK}))
 export AEROSTACK2_PROJECTS="$AEROSTACK2_WORKSPACE/projects/"

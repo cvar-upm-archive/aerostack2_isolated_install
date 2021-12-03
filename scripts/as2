@@ -16,8 +16,8 @@ def send_bash_command(command):
 def compile_ros2_ws():
   print("Building Aerostack2 ROS2 PACKAGES")
   
-  # send_bash_command(f'source {AS2_WS_PATH}/install/setup.bash; cd {AS2_WS_PATH} && colcon build --symlink-install')
-  send_bash_command(f'cd {AS2_WS_PATH} && colcon build --symlink-install')
+  send_bash_command(f'source {AS2_WS_PATH}/install/setup.bash; source /opt/ros/foxy/setup.bash && cd {AS2_WS_PATH} && colcon build --symlink-install')
+  # send_bash_command(f'cd {AS2_WS_PATH} && colcon build --symlink-install')
 
 def compile_ros1_ws():
   compile_ros1_bridge()
