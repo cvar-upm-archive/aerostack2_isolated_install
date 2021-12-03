@@ -87,13 +87,29 @@ repositories:
 
 
 #----------------------------------------------------------------------------
-# Thirdparty
+# ROS2 Thirdparty Packages
 #----------------------------------------------------------------------------
   thirdparty/px4_required_packages:
-    type: git 
+    type: git
     url: https://github.com/aerostack2-developers/px4_required_packages.git
     version: main
 
+
+#----------------------------------------------------------------------------
+# ROS1 Bridge
+#----------------------------------------------------------------------------
+
+  ros1_stack/ros1_bridge/ros1_bridge:
+    type: git
+    url: https://github.com/ros2/ros1_bridge.git
+    version: master
+
+#----------------------------------------------------------------------------
+# ROS1 Packages
+#----------------------------------------------------------------------------
+#  ros1_stack/ros1_packages/src/ FOO:
+#    type: git
+#    url:
 
 #installer/
 #configs/
