@@ -10,7 +10,7 @@ fi
 export AEROSTACK2_SIMULATION_DRONE_ID=drone_sim_11 
 
 export AEROSTACK2_WORKSPACE=$(dirname $(dirname ${AEROSTACK2_STACK}))
-export AEROSTACK2_PROJECTS="$AEROSTACK2_WORKSPACE/projects/"
+export AEROSTACK2_PROJECTS="$AEROSTACK2_STACK/projects/"
 export PATH=$PATH:$AEROSTACK2_STACK/scripts/
 
 alias as2_set_ros2_env="\
