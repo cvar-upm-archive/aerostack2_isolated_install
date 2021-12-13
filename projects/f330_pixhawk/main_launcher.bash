@@ -53,14 +53,20 @@ tmux send-keys "ros2 launch as2_basic_behaviours follow_path_behaviours_launch.p
 
 tmux new-window -t $SESSION:5 -n 'aruco_gate_detector'
 tmux send-keys "ros2 launch aruco_gate_detector aruco_gate_detector_launch.py \
-    drone_id:=$DRONE_ID_NAMESPACE" C-m
+    drone_id:=$DRONE_ID_NAMESPACE " C-m
 
 tmux new-window -t $SESSION:6 -n 'realsense_interface'
 tmux send-keys "ros2 launch realsense_interface realsense_interface_launch.py \
     drone_id:=$DRONE_ID_NAMESPACE " C-m
     
 tmux new-window -t $SESSION:7 -n 'gates to waypoints'
-tmux send-keys "ros2 run gates_to_waypoints gates_to_waypoints_node --ros-args -r __ns:=/drone0 " C-m
+tmux send-keys "ros2 run gates_to_waypoints gates_to_waypoints_node \
+	--ros-args -r __ns:=/drone0 " C-m
+
+tmux new-window -t $SESSION:8 -n 'static_transform_publisher'
+tmux send-keys "ros2 launch basic_tf_tree_generator basic_tf_tree_generator_launch.py \
+    drone_id:=$DRONE_ID_NAMESPACE " C-m
+
     
 
 
