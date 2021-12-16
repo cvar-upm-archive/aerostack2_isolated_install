@@ -6,7 +6,7 @@
 echo "Killing gazebo"
 pkill -9 gzserver
 pkill -9 gzclient
-
+sleep 1
 
 AEROSTACK_PROJECT=$(pwd)
 
@@ -16,7 +16,7 @@ AEROSTACK_PROJECT=$(pwd)
 #SIMULATE WITH CAMERA
 
 
-WORLD_FILE="${AEROSTACK_PROJECT}/configs/gazebo/worlds/frames2.world"
+WORLD_FILE="${AEROSTACK_PROJECT}/configs/gazebo/worlds/frames_manual.world"
 UAV_NAME="iris"
 MODEL_FOLDER="${AEROSTACK_PROJECT}/configs/gazebo/models"
 
@@ -39,6 +39,6 @@ source $PX4_FOLDER/build/px4_sitl_rtps/build_gazebo/setup.sh
 # bash launch_simulator.bash
 $PX4_FOLDER/Tools/sitl_run.sh "$PX4_FOLDER/build/px4_sitl_rtps/bin/px4" none gazebo none $WORLD_FILE $PX4_FOLDER $PX4_FOLDER/build/px4_sitl_rtps
 
-echo "Killing gazebo"
-pkill -9 gzserver
-pkill -9 gzclient
+# echo "Killing gazebo"
+# pkill -9 gzserver
+# pkill -9 gzclient
