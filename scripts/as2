@@ -6,7 +6,9 @@ import argparse,subprocess
 AS2_WS_PATH = os.getenv('AEROSTACK2_WORKSPACE')
 AS2_STACK_PATH = os.getenv('AEROSTACK2_STACK')
 AS2_ROS1_WS_PATH = AS2_STACK_PATH+"/ros1_stack/ros1_packages/" 
-AS2_ROS1_BRIDGE_PATH = AS2_STACK_PATH+"/ros1_stack/ros1_bridge/" 
+AS2_ROS1_BRIDGE_PATH = AS2_STACK_PATH+"/ros1_stack/ros1_bridge/"
+
+IS_ROS1_WS = os.path.exists(AS2_ROS1_WS_PATH+"/src")
 
 
 def send_bash_command(command):
@@ -21,7 +23,7 @@ def compile_ros2_ws():
 
 def compile_ros1_ws():
   compile_ros1_bridge()
-  if (os.path.exists(AS2_ROS1_WS_PATH+"/src")):
+  if IS_ROS1_WS:
     print("Building Aerostack2 ROS1 PACKAGES")
     #TODO: dinamically choose ros1 distro
     send_bash_command(f'source /opt/ros/noetic/setup.bash ; cd {AS2_ROS1_WS_PATH} && catkin_make')
@@ -43,16 +45,19 @@ def clean_ros2_ws(args_list):
   if (not args_list.yes):
     print("Are you sure you want to clean the ROS2 workspace? (y/n)")
     answer = input()
-    if(answer != "y"):
+    if(answer.lower() != "y"):
       return
   send_bash_command(f'cd {AS2_WS_PATH} && rm -rf build/ install/ log/')
 
 def clean_ros1_ws(args_list):
+  if not IS_ROS1_WS:
+    print('No Aerostack2 ROS1 WS found')
+    return
   if (not args_list.yes):
     #ask for confirmation before cleaning ros1 workspace
     print("Are you sure you want to clean the ROS1 workspace? (y/n)")
     answer = input()
-    if(answer != "y"):
+    if(answer.lower() != "y"):
       return
   send_bash_command(f'cd {AS2_ROS1_WS_PATH} && rm -rf build/ devel/')
   send_bash_command(f'cd {AS2_ROS1_BRIDGE_PATH} && rm -rf build/ install/ log/')
@@ -99,7 +104,5 @@ if __name__ == "__main__":
   elif args.action == "run":
     # os.system("./as2")
     print('running')
-  elif args.action == "":
-    print('no action specified')
   else:
-    print("Unknown action, supported actions are build, clean and run")
+    parser.print_help()
