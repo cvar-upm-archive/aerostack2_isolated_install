@@ -14,7 +14,7 @@ sudo apt install libgflags* -y &&\
 sudo apt install libnlopt-cxx-dev -y &&\
 sudo apt install libyaml-cpp* -y &&\
 sudo usermod -a -G dialout $USER &&\
-sudo apt-get remove modemmanager -y&&\
+sudo apt-get remove modemmanager -y &&\
 sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer1.0-gl -y &&\
 sudo udevadm control --reload-rules && udevadm trigger
 

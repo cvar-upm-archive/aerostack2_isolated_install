@@ -5,7 +5,7 @@
 
 # install not ros dependencies
 
-cd ../../
+cd $AEROSTACK2_WORKSPACE/src
 mkdir thirdparty/
 cd thirdparty
 touch COLCON_IGNORE
@@ -19,7 +19,7 @@ git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git -b v1.0.4 \
 
 source ~/.bashrc
 
-cd ../
+cd $AEROSTACK2_WORKSPACE/src/thirdparty
 
 git clone https://github.com/eProsima/foonathan_memory_vendor.git \
     && cd foonathan_memory_vendor \
@@ -27,8 +27,7 @@ git clone https://github.com/eProsima/foonathan_memory_vendor.git \
     && cmake .. \
     && sudo cmake --build . --target install 
 
-cd ../
-cd ../
+cd $AEROSTACK2_WORKSPACE/src
 
 # CHECK IF THIS IS NECESSARY
 #git clone --recursive https://github.com/eProsima/Fast-DDS.git -b v2.0.0 ~/FastDDS-2.0.0 \

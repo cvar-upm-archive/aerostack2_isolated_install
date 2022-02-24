@@ -15,8 +15,10 @@ AEROSTACK_PROJECT=$(pwd)
 
 #SIMULATE WITH CAMERA
 
+#WORLD_FILE="${AEROSTACK_PROJECT}/configs/gazebo/worlds/frames_2_navy.world"
+WORLD_FILE="${AEROSTACK_PROJECT}/configs/gazebo/worlds/fronton_sim_4.world"
+#WORLD_FILE="${AEROSTACK_PROJECT}/configs/gazebo/worlds/empty.world"
 
-WORLD_FILE="${AEROSTACK_PROJECT}/configs/gazebo/worlds/fronton_sim.world"
 UAV_NAME="iris"
 MODEL_FOLDER="${AEROSTACK_PROJECT}/configs/gazebo/models"
 

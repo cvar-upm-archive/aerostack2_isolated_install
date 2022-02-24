@@ -18,8 +18,8 @@ echo "using \"/$DRONE_ID_NAMESPACE/\" namespace"
 
 SESSION=$USER
 
-UAV_MASS=1.5
-UAV_MAX_THRUST=15.0
+UAV_MASS=0.75 # 1.5
+UAV_MAX_THRUST=20.0 #15.0
 
 # Kill any previous session (-t -> target session, -a -> all other sessions )
 tmux kill-session -t $SESSION
@@ -40,41 +40,30 @@ tmux send-keys "ros2 launch pixhawk_platform pixhawk_platform_launch.py \
     max_thrust:=$UAV_MAX_THRUST \
     simulation_mode:=true" C-m
 
-tmux new-window -t $SESSION:2 -n 'df_controller'
-tmux send-keys "ros2 launch differential_flatness_based_controller differential_flattness_controller_launch.py \
-    drone_id:=$DRONE_ID_NAMESPACE " C-m
+ tmux new-window -t $SESSION:2 -n 'df_controller'
+ tmux send-keys "ros2 launch differential_flatness_based_controller differential_flattness_controller_launch.py \
+     drone_id:=$DRONE_ID_NAMESPACE " C-m
 
-tmux new-window -t $SESSION:3 -n 'traj_generator'
-tmux send-keys "ros2 launch as2_trajectory_generator as2_trajectory_generator_launch.py  \
-    drone_id:=$DRONE_ID_NAMESPACE " C-m
-# tmux send-keys "ros2 launch trajectory_generator trajectory_generator_launch.py  \
+# tmux new-window -t $SESSION:3 -n 'traj_generator'
+# tmux send-keys "ros2 launch as2_trajectory_generator as2_trajectory_generator_launch.py  \
 #     drone_id:=$DRONE_ID_NAMESPACE " C-m
+# #tmux send-keys "ros2 launch trajectory_generator trajectory_generator_launch.py  \
+# #    drone_id:=$DRONE_ID_NAMESPACE " C-m
 
-tmux new-window -t $SESSION:4 -n 'follow_path_behaviour'
-tmux send-keys "ros2 launch as2_basic_behaviours follow_path_behaviours_launch.py \
-    drone_id:=$DRONE_ID_NAMESPACE " C-m
+# tmux new-window -t $SESSION:4 -n 'follow_path_behaviour'
+# tmux send-keys "ros2 launch as2_basic_behaviours follow_path_behaviours_launch.py \
+#     drone_id:=$DRONE_ID_NAMESPACE " C-m
     
 tmux new-window -t $SESSION:5 -n 'aruco_gate_detector'
 tmux send-keys "ros2 launch aruco_gate_detector aruco_gate_detector_launch.py \
     drone_id:=$DRONE_ID_NAMESPACE " C-m
-    
-tmux new-window -t $SESSION:6 -n 'static_transform_publisher'
+
+# tmux new-window -t $SESSION:6 -n 'gates_to_waypoints'
+# tmux send-keys "ros2 run gates_to_waypoints gates_to_waypoints_node --ros-args -r __ns:=/$DRONE_ID_NAMESPACE " C-m
+
+tmux new-window -t $SESSION:7 -n 'static_transform_publisher'
 tmux send-keys "ros2 launch basic_tf_tree_generator basic_tf_tree_generator_launch.py \
     drone_id:=$DRONE_ID_NAMESPACE" C-m
-
-tmux new-window -t $SESSION:7 -n 'gates_to_waypoints'
-tmux send-keys "ros2 run gates_to_waypoints gates_to_waypoints_node --ros-args -r __ns:=/$DRONE_ID_NAMESPACE " C-m
-
-tmux new-window -t $SESSION:8 -n 'record rosbag'
-tmux send-keys "mkdir rosbags " C-m 
-tmux send-keys "cd rosbags && \
-    ros2 bag record \
-    /$DRONE_ID_NAMESPACE/self_localization/odom \
-    /$DRONE_ID_NAMESPACE/actuator_command/thrust \
-    /$DRONE_ID_NAMESPACE/actuator_command/twist \
-    /$DRONE_ID_NAMESPACE/motion_reference/trajectory \
-    /$DRONE_ID_NAMESPACE/image_raw \
-    /$DRONE_ID_NAMESPACE/aruco_gate_detector/gate_img_topic " C-m
 
 
 tmux attach-session -t $SESSION:1
