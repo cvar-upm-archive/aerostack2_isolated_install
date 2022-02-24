@@ -1,12 +1,12 @@
 #!/bin/bash
 echo "AS2 is setting up the environment..."
 
-if [ "$SHELL" = "/usr/bin/zsh" ]; then
-    echo "using zsh"
-    TERM_EXTENSION=".zsh"
-else
+if [ "$ZSH_VERSION" = "" ]; then
     echo "using bash as your shell..."
     TERM_EXTENSION=".bash"
+else
+    echo "using zsh"
+    TERM_EXTENSION=".zsh"
 fi
 
 # check if AEROSTACK2_STACK is set
@@ -14,8 +14,6 @@ if [ -z "$AEROSTACK2_STACK" ]; then
   echo "AEROSTACK2_STACK is not set. Please set it to the path of the AEROSTACK2_STACK folder"
   exit 1
 fi
-
-
 
 export AEROSTACK2_WORKSPACE=$(dirname $(dirname ${AEROSTACK2_STACK}))
 export AEROSTACK2_PROJECTS="$AEROSTACK2_STACK/projects/"
