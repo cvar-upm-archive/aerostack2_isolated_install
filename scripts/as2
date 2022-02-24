@@ -3,8 +3,7 @@
 import os
 import argparse
 import subprocess
-
-SHELL = 'zsh' if os.getenv('ZSH_VERSION') != "" else 'bash'
+SHELL = 'zsh' if os.getenv('ZSH_VERSION') else 'bash'
 print(SHELL)
 TERM_EXTENSION = f'.{SHELL}'
 
