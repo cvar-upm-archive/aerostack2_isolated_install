@@ -1,6 +1,9 @@
 #!/bin/bash
 
-cd $AEROSTACK2_WORKSPACE/src/thirdparty
+cd $AEROSTACK2_WORKSPACE/src
+mkdir -p thirdparty
+cd thirdparty
+touch COLCON_IGNORE
 
 git clone https://github.com/google/glog.git &&\
     cd glog &&\
