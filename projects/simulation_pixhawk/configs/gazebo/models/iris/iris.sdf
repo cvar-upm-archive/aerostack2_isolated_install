@@ -4,7 +4,7 @@
       <pose>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
-        <mass>1.5</mass>
+        <mass>0.75</mass>
         <inertia>
           <ixx>0.029125</ixx>
           <ixy>0</ixy>
@@ -630,7 +630,7 @@
                  * Camera info is published to: /custom_ns/custom_camera/custom_info 
             -->
             <ros>
-              <namespace>drone_sim_11</namespace>
+              <namespace>drone_sim_dps_0</namespace>
               <argument>image_raw:=custom_img</argument>
               <!-- <argument>camera_info:=custom_info</argument> -->
             </ros>

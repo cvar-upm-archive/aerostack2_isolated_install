@@ -1,33 +1,48 @@
 #!/bin/bash
 echo "AS2 is setting up the environment..."
 
+if [ "$ZSH_VERSION" = "" ]; then
+    echo "using bash as your shell..."
+    TERM_EXTENSION=".bash"
+else
+    echo "using zsh"
+    TERM_EXTENSION=".zsh"
+fi
+
 # check if AEROSTACK2_STACK is set
 if [ -z "$AEROSTACK2_STACK" ]; then
   echo "AEROSTACK2_STACK is not set. Please set it to the path of the AEROSTACK2_STACK folder"
   exit 1
 fi
 
-export AEROSTACK2_SIMULATION_DRONE_ID=drone_sim_11 
-
 export AEROSTACK2_WORKSPACE=$(dirname $(dirname ${AEROSTACK2_STACK}))
 export AEROSTACK2_PROJECTS="$AEROSTACK2_STACK/projects/"
 export PATH=$PATH:$AEROSTACK2_STACK/scripts/
 
+ENV_VARIABLES_FILE="$AEROSTACK2_STACK/scripts/env_variables.bash"
+if test -f "$ENV_VARIABLES_FILE"; then
+    source $ENV_VARIABLES_FILE
+else
+    echo "export AEROSTACK2_SIMULATION_DRONE_ID=drone_sim_${USER}_0" >> $ENV_VARIABLES_FILE
+    source $ENV_VARIABLES_FILE
+fi
+
+
 alias as2_set_ros2_env="\
-source /opt/ros/foxy/setup.bash && \
-source $AEROSTACK2_WORKSPACE/install/setup.bash"
+source /opt/ros/foxy/setup${TERM_EXTENSION} && \
+source $AEROSTACK2_WORKSPACE/install/setup${TERM_EXTENSION}"
 
 if [ -d "$AEROSTACK2_STACK/ros1_stack/ros1_packages/devel/" ];
 then
   alias as2_set_ros1_env="\
-  source /opt/ros/noetic/setup.bash &&\
-  source $AEROSTACK2_STACK/ros1_stack/ros1_packages/devel/setup.bash"
+  source /opt/ros/noetic/setup${TERM_EXTENSION} &&\
+  source $AEROSTACK2_STACK/ros1_stack/ros1_packages/devel/setup${TERM_EXTENSION}"
 fi
 
 if [ -d "$AEROSTACK2_STACK/ros1_stack/ros1_bridge/install/" ]; then
   alias as2_run_ros1_bridge="\
-  source $AEROSTACK2_STACK/ros1_stack/ros1_bridge/install/setup.bash && \
-  source ${AEROSTACK2_WORKSPACE}/install/setup.bash && \
+  source $AEROSTACK2_STACK/ros1_stack/ros1_bridge/install/setup${TERM_EXTENSION} && \
+  source ${AEROSTACK2_WORKSPACE}/install/setup${TERM_EXTENSION} && \
   export ROS_MASTER_URI=http://localhost:11311 &&\
   ros2 run ros1_bridge dynamic_bridge"  
 fi
@@ -52,6 +67,4 @@ if [ "$color_prompt" = yes ]; then
 else
  PS1='$(parse_ros_version)${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ '
 fi
-
-
 

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-QUIEN=$(export QUIEN='yo')
-# echo "Hola $QUIEN"
-
-echo  "${QUIEN}" 
