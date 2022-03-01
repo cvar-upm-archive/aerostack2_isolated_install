@@ -6,7 +6,7 @@
 # install not ros dependencies
 
 cd $AEROSTACK2_WORKSPACE/src
-mkdir thirdparty/
+mkdir -p thirdparty/
 cd thirdparty
 touch COLCON_IGNORE
 
@@ -58,8 +58,3 @@ else
     [ ! -v $verbose ] && echo "FastRTPSGen version: ${fastrtpsgen_version_out: -5}"
   fi
 fi
-
-
-
-
-
