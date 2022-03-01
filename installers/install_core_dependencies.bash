@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -z "$ROS_DISTRO" ]]; then
+    echo ""; echo "[ERROR] ROS environment is not set. Exiting.."
+    exit 1
+fi
+
 echo $(pwd)
 
 sudo apt install tmux python3-pip python3-testresources -y && \

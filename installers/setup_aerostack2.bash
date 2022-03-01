@@ -17,10 +17,10 @@ fi
 
 #TODO: handle error in dependencies
 
-#bash $BASEDIR/install_core_dependencies.bash
-echo "todo bien"
+bash $BASEDIR/install_core_dependencies.bash
 if [ $? -eq 0 ]; then
-   echo OK
+   echo "" ; echo OK
+   echo "Core dependencies installed"
 else
    echo "" ;echo "ERROR:" 
    echo "Dependencies were not installed properly" 
