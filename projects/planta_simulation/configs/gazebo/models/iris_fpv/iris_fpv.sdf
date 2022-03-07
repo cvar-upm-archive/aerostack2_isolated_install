@@ -1,5 +1,5 @@
 <sdf version='1.6'>
-  <model name='iris'>
+  <model name='iris_fpv'>
     <link name='base_link'>
       <pose>0 0 0 0 0 0</pose>
       <inertial>
@@ -579,7 +579,7 @@
 
       <model name='camera'>
 	<link name='link'>
-	<pose frame=''>-0.118317 0.002195 0.004205 -0 1.5635 -0</pose>
+	<pose frame=''>-0.118317 0.002195 0.004205 -0 1.563515 -0</pose>
   <inertial>
           <pose>0 0 0 0 0 0</pose>
           <mass>0.01</mass>

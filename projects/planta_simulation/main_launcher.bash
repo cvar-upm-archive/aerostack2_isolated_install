@@ -18,8 +18,8 @@ echo "using \"/$DRONE_ID_NAMESPACE/\" namespace"
 
 SESSION=$USER
 
-UAV_MASS=1.5
-UAV_MAX_THRUST=10.0
+UAV_MASS=0.75 # 1.5
+UAV_MAX_THRUST=20.0 #15.0
 
 # Kill any previous session (-t -> target session, -a -> all other sessions )
 tmux kill-session -t $SESSION
@@ -45,14 +45,20 @@ tmux send-keys "ros2 launch differential_flatness_based_controller differential_
     drone_id:=$DRONE_ID_NAMESPACE " C-m
 
 tmux new-window -t $SESSION:3 -n 'traj_generator'
+# tmux send-keys "ros2 launch as2_trajectory_generator as2_trajectory_generator_launch.py  \
+#     drone_id:=$DRONE_ID_NAMESPACE " C-m
 tmux send-keys "ros2 launch trajectory_generator trajectory_generator_launch.py  \
     drone_id:=$DRONE_ID_NAMESPACE " C-m
 
 tmux new-window -t $SESSION:4 -n 'follow_path_behaviour'
-tmux send-keys "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
+tmux send-keys "ros2 launch as2_basic_behaviours follow_path_behaviours_launch.py \
     drone_id:=$DRONE_ID_NAMESPACE " C-m
 
-tmux new-window -t $SESSION:5 -n 'gps_translator'
+tmux new-window -t $SESSION:5 -n 'static_transform_publisher'
+tmux send-keys "ros2 launch basic_tf_tree_generator basic_tf_tree_generator_launch.py \
+    drone_id:=$DRONE_ID_NAMESPACE" C-m
+
+tmux new-window -t $SESSION:6 -n 'gps_translator'
 tmux send-keys "ros2 launch gps_utils gps_translator_launch.py" C-m
 
 tmux attach-session -t $SESSION:1
