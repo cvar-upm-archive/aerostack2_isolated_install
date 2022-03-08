@@ -13,6 +13,10 @@ repositories:
     url: https://github.com/aerostack2-developers/as2_control_command_handlers.git
     version: main
   
+  stack/core/gps_utils:
+    type: git
+    url: https://github.com/aerostack2-developers/gps_utils.git
+    version: main
 
 #----------------------------------------------------------------------------
 # Messages

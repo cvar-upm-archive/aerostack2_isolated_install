@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 import os
 import argparse
@@ -9,6 +9,7 @@ TERM_EXTENSION = f'.{SHELL}'
 
 AS2_WS_PATH = os.getenv('AEROSTACK2_WORKSPACE')
 AS2_STACK_PATH = os.getenv('AEROSTACK2_STACK')
+AS2_PROJECTS_PATH = os.getenv('AEROSTACK2_PROJECTS')
 AS2_ROS1_WS_PATH = f'{AS2_STACK_PATH}/ros1_stack/ros1_packages/'
 AS2_ROS1_BRIDGE_PATH = f'{AS2_STACK_PATH}/ros1_stack/ros1_bridge/'
 COLCON_COMMAND = f'colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release'
@@ -31,13 +32,21 @@ def send_shell_command(command):
     process = subprocess.run(cmd, shell=True)
 
 
-def compile_ros2_ws():
+def _compile_ros2_ws():
     print("Building Aerostack2 ROS2 PACKAGES")
 
-    send_shell_command(
-        f'source {AS2_WS_PATH}/install/setup{TERM_EXTENSION}; source /opt/ros/foxy/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && {COLCON_COMMAND}')
+    send_shell_command(f'source /opt/ros/foxy/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && {COLCON_COMMAND}')
     # send_shell_command(f'cd {AS2_WS_PATH} && colcon build --symlink-install')
 
+def compile_ros2_ws(pkg):
+  print("Building Aerostack2 ROS2 PACKAGES")
+  
+  if pkg:
+    send_shell_command(f'source /opt/ros/foxy/setup{TERM_EXTENSION} ; source {AS2_WS_PATH}/install/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && \
+                        colcon build --packages-up-to {pkg} --allow-overriding {pkg} --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release')
+  else:
+    send_shell_command(f'source /opt/ros/foxy/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && {COLCON_COMMAND}')
+  # send_bash_command(f'cd {AS2_WS_PATH} && colcon build --symlink-install')
 
 def compile_ros1_ws():
     compile_ros1_bridge()
@@ -87,14 +96,12 @@ def clean_ros1_ws(args_list):
 
 
 def build_as2(args_list):
-    # if args_list.:
-    if(not args_list.ros1_only):
-        compile_ros2_ws()
-
-    # install ros1 dependencies
-    if(not args_list.ros2_only):
-        compile_ros1_ws()
-
+  if(not args_list.ros1_only):
+    compile_ros2_ws(args_list.pkg)
+  
+  # install ros1 dependencies
+  if(not args_list.ros2_only):
+    compile_ros1_ws()
 
 def clean_as2(args_list):
     # if args_list.:
@@ -109,27 +116,35 @@ def clean_as2(args_list):
 
 # main
 if __name__ == "__main__":
+  # argparser with a default string corresponding with the action to do
+  parser = argparse.ArgumentParser(
+  description=' Aerostack2 toolbox for ease the use of the AS2 pipeline')
+  # parser.add_argument('action', metavar='action', type=str, nargs='?', default='',
+  #                 help='action to do (build, clean, run)')
+  subparser = parser.add_subparsers(title='AS2 commands', help="action to do", dest='action', required=True)
+  cd_parser = subparser.add_parser('cd', help='change directory')
+  cd_parser.add_argument('pkg', nargs='?', help='change directory to PKG')
 
-    # argparser with a default string corresponding with the action to do
-    parser = argparse.ArgumentParser(
-        description=' Aerostack2 toolbox for ease the use of the AS2 pipeline')
-    parser.add_argument('action', metavar='action', type=str, nargs='?', default='',
-                        help='action to do (build, clean, run)')
-    parser.add_argument(
-        '--ros2-only', help='build only the ros2 packages', action='store_true')
-    parser.add_argument(
-        '--ros1-only', help='build only the ros1 packages', action='store_true')
-    parser.add_argument(
-        '-y', '--yes', help='answer yes to all questions', action='store_true')
-    args = parser.parse_args()
+  build_parser = subparser.add_parser('build', help="build help")
+  build_parser.add_argument('pkg', nargs='?', help='build up to PKG')
+  build_parser.add_argument('--ros2-only', help='use only the ros2 packages', action='store_true')
 
-    if args.action == "build":
-        # print('building')
-        build_as2(args)
-    elif args.action == "clean":
-        clean_as2(args)
-    elif args.action == "run":
-        # os.system("./as2")
-        print('running')
-    else:
-        parser.print_help()
+
+  subparser.add_parser('clean', help='clean workspace')
+  subparser.add_parser('run', help='')
+  # subparser.add_parser('import', help='')  # vcs import --recursive < .repos
+
+  parser.add_argument('--ros2-only', help='use only the ros2 packages', action='store_true')
+  parser.add_argument('--ros1-only', help='use only the ros1 packages', action='store_true')
+  parser.add_argument('-y', '--yes', help='answer yes to all questions', action='store_true')
+  args = parser.parse_args()
+  
+  if args.action == "build":
+    build_as2(args)
+  elif args.action == "clean":
+    clean_as2(args)
+  elif args.action == "run":
+    # os.system("./as2")
+    print('running')
+  else:
+    parser.print_help()

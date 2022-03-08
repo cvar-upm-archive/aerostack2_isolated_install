@@ -10,7 +10,8 @@ mkdir -p thirdparty/
 cd thirdparty
 touch COLCON_IGNORE
 
-sudo apt install openjdk-11-jdk
+# FIXME
+sudo apt install -y openjdk-11-jdk
 
 git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git -b v1.0.4 \
     && cd Fast-DDS-Gen \
