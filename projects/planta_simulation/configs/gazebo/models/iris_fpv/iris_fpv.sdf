@@ -577,10 +577,10 @@
       <accelerometerTurnOnBiasSigma>0.196</accelerometerTurnOnBiasSigma>
     </plugin>
 
-      <model name='camera'>
-	<link name='link'>
-	<pose frame=''>-0.118317 0.002195 0.004205 -0 1.563515 -0</pose>
-  <inertial>
+    <model name='camera'>
+      <link name='link'>
+        <pose frame=''>-0.118317 0.002195 0.004205 -0 1.563515 -0</pose>
+        <inertial>
           <pose>0 0 0 0 0 0</pose>
           <mass>0.01</mass>
           <inertia>
@@ -593,8 +593,8 @@
           </inertia>
         </inertial>
 
-    <self_collide>0</self_collide>
-	  <kinematic>0</kinematic>
+        <self_collide>0</self_collide>
+	      <kinematic>0</kinematic>
         <sensor type="camera" name="camera1">
           <!-- Set always_on only sensor, not on plugin -->
           <always_on>1</always_on>
@@ -643,7 +643,7 @@
         </sensor>
 	    </link>
     </model>
-     <joint name='camera_joint' type='fixed'>
+    <joint name='camera_joint' type='fixed'>
       <parent>base_link</parent>
       <child>camera::link</child>
     </joint>
