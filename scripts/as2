@@ -127,14 +127,14 @@ if __name__ == "__main__":
 
   build_parser = subparser.add_parser('build', help="build help")
   build_parser.add_argument('pkg', nargs='?', help='build up to PKG')
-  build_parser.add_argument('--ros2-only', help='use only the ros2 packages', action='store_true')
+  build_parser.add_argument('--ros2-only', help='use only the ros2 packages', action='store_false')
 
 
   subparser.add_parser('clean', help='clean workspace')
   subparser.add_parser('run', help='')
   # subparser.add_parser('import', help='')  # vcs import --recursive < .repos
 
-  parser.add_argument('--ros2-only', help='use only the ros2 packages', action='store_true')
+  parser.add_argument('--ros2-only', help='use only the ros2 packages', action='store_false')
   parser.add_argument('--ros1-only', help='use only the ros1 packages', action='store_true')
   parser.add_argument('-y', '--yes', help='answer yes to all questions', action='store_true')
   args = parser.parse_args()
