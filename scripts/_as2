@@ -1,0 +1,36 @@
+# as2 completion
+
+as2_pkgs=$(${AEROSTACK2_STACK}/scripts/as2.bash -p list |grep -vE 'List|Arg' | sed -r '/^\s*$/d'| sed 's/\[i\]//' |sort -u | tr -d '\n' | sed -z 's/\s//')
+
+_as2() 
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    commands='cd build clean run'
+    opts="--help -h -y --ros2-only --ros1-only"
+
+    case $cur in
+	-*)
+    	    if [[ ${commands} =~ ${prev} ]] ; then
+        	COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+		return 0
+	    fi
+	    ;;
+	*)
+    	    if [[ ${prev} == "as2" ]] ; then
+            	COMPREPLY=( $(compgen -W "${commands}" ${cur}) )
+            	return 0
+    	    fi
+
+    	    if [[ ${commands} =~ ${prev} ]] ; then
+		COMPREPLY=( $(compgen -W "$as2_pkgs" ${cur}) )
+		return 0
+	    fi
+	    ;;
+    esac	
+
+}
+complete -F _as2 as2
