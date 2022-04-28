@@ -27,6 +27,8 @@ else
     source $ENV_VARIABLES_FILE
 fi
 
+# enable custom AS2 bash completions
+source $AEROSTACK2_STACK/scripts/_as2
 
 alias as2_set_ros2_env="\
 source /opt/ros/foxy/setup${TERM_EXTENSION} && \

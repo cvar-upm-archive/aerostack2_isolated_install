@@ -107,11 +107,18 @@ repositories:
 #----------------------------------------------------------------------------
 # ROS1 Bridge
 #----------------------------------------------------------------------------
-
   ros1_stack/ros1_bridge/ros1_bridge:
     type: git
     url: https://github.com/ros2/ros1_bridge.git
     version: master
+
+#----------------------------------------------------------------------------
+# Simulation
+#----------------------------------------------------------------------------
+  simulation/gazebo_assets:
+    type: git
+    url: https://github.com/aerostack2-developers/gazebo_assets.git
+    version: main
 
 #----------------------------------------------------------------------------
 # ROS1 Packages

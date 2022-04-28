@@ -1,4 +1,6 @@
 stack/
+simulation/
+projects/
 __pycache__/
 ros1_stack/
 thirdparty/

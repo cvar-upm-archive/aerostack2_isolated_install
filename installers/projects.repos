@@ -1,0 +1,19 @@
+repositories:
+
+#----------------------------------------------------------------------------
+# Projects
+#----------------------------------------------------------------------------
+  projects/f330_pixhawk:
+    type: git 
+    url: https://github.com/aerostack2-developers/project_f330_pixhawk.git
+    version: main
+
+  projects/simulation_pixhawk_gazebo:
+    type: git 
+    url: https://github.com/aerostack2-developers/project_simulation_pixhawk_gazebo.git
+    version: main
+  
+  projects/copilot:
+    type: git
+    url: https://github.com/aerostack2-developers/project_copilot.git
+    version: main
