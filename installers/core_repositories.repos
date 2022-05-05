@@ -12,6 +12,11 @@ repositories:
     type: git 
     url: https://github.com/aerostack2-developers/as2_control_command_handlers.git
     version: main
+
+  stack/core/as2_motion_command_handlers:
+    type: git 
+    url: https://github.com/aerostack2-developers/as2_motion_command_handlers.git
+    version: main
   
   stack/core/gps_utils:
     type: git
@@ -39,6 +44,45 @@ repositories:
     url: https://github.com/aerostack2-developers/gates_to_waypoints.git
     version: main
 
+  stack/behaviours/take_off/takeoff_behaviour:
+    type: git 
+    url: https://github.com/aerostack2-developers/takeoff_behaviour.git
+    version: main
+
+  stack/behaviours/take_off/takeoff_plugins:
+    type: git 
+    url: https://github.com/aerostack2-developers/takeoff_plugins.git
+    version: main
+
+  stack/behaviours/land/land_behaviour:
+    type: git 
+    url: https://github.com/aerostack2-developers/land_behaviour.git
+    version: main
+
+  stack/behaviours/land/land_plugins:
+    type: git 
+    url: https://github.com/aerostack2-developers/land_plugins.git
+    version: main
+
+  stack/behaviours/go_to/goto_behaviour:
+    type: git 
+    url: https://github.com/aerostack2-developers/goto_behaviour.git
+    version: main
+
+  stack/behaviours/go_to/goto_plugins:
+    type: git 
+    url: https://github.com/aerostack2-developers/goto_plugins.git
+    version: main
+  
+  stack/behaviours/follow_path/goto_behaviour:
+    type: git 
+    url: https://github.com/aerostack2-developers/follow_path_behaviour.git
+    version: main
+
+  stack/behaviours/follow_path/follow_path_plugins:
+    type: git 
+    url: https://github.com/aerostack2-developers/follow_path_plugins.git
+    version: main
 #----------------------------------------------------------------------------
 # Hardware_interface
 #----------------------------------------------------------------------------
@@ -78,6 +122,11 @@ repositories:
   stack/motion_control/polynomial_trajectory_generator:
     type: git 
     url: https://github.com/aerostack2-developers/polynomial_trajectory_generator.git
+    version: main
+
+  stack/motion_control/controller_manager:
+    type: git 
+    url: https://github.com/aerostack2-developers/controller_manager.git
     version: main
 
 #  stack/motion_control/normalize_thrust:
