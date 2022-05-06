@@ -7,13 +7,13 @@ SHELL = 'zsh' if os.getenv('ZSH_VERSION') else 'bash'
 print(SHELL)
 TERM_EXTENSION = f'.{SHELL}'
 
+ROS_DISTRO = os.getenv('ROS_DISTRO')
 AS2_WS_PATH = os.getenv('AEROSTACK2_WORKSPACE')
 AS2_STACK_PATH = os.getenv('AEROSTACK2_STACK')
 AS2_PROJECTS_PATH = os.getenv('AEROSTACK2_PROJECTS')
 AS2_ROS1_WS_PATH = f'{AS2_STACK_PATH}/ros1_stack/ros1_packages/'
 AS2_ROS1_BRIDGE_PATH = f'{AS2_STACK_PATH}/ros1_stack/ros1_bridge/'
 COLCON_COMMAND = f'colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release'
-
 
 IS_ROS1_WS = os.path.exists(AS2_ROS1_WS_PATH+"/src")
 
@@ -35,17 +35,17 @@ def send_shell_command(command):
 def _compile_ros2_ws():
     print("Building Aerostack2 ROS2 PACKAGES")
 
-    send_shell_command(f'source /opt/ros/foxy/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && {COLCON_COMMAND}')
+    send_shell_command(f'source /opt/ros/{ROS_DISTRO}/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && {COLCON_COMMAND}')
     # send_shell_command(f'cd {AS2_WS_PATH} && colcon build --symlink-install')
 
 def compile_ros2_ws(pkg):
   print("Building Aerostack2 ROS2 PACKAGES")
   
   if pkg:
-    send_shell_command(f'source /opt/ros/foxy/setup{TERM_EXTENSION} ; source {AS2_WS_PATH}/install/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && \
+    send_shell_command(f'source /opt/ros/{ROS_DISTRO}/setup{TERM_EXTENSION} ; source {AS2_WS_PATH}/install/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && \
                         colcon build --packages-up-to {pkg} --allow-overriding {pkg} --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release')
   else:
-    send_shell_command(f'source /opt/ros/foxy/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && {COLCON_COMMAND}')
+    send_shell_command(f'source /opt/ros/{ROS_DISTRO}/setup{TERM_EXTENSION} && cd {AS2_WS_PATH} && {COLCON_COMMAND}')
   # send_bash_command(f'cd {AS2_WS_PATH} && colcon build --symlink-install')
 
 def compile_ros1_ws():
@@ -138,6 +138,11 @@ if __name__ == "__main__":
   parser.add_argument('--ros1-only', help='use only the ros1 packages', action='store_true')
   parser.add_argument('-y', '--yes', help='answer yes to all questions', action='store_true')
   args = parser.parse_args()
+
+  # check if ROS_DISTRO is set
+  if ( ROS_DISTRO == "" ):
+      print('ERROR: $ROS_DISTRO env variable is UNSET')
+      exit(1)
   
   if args.action == "build":
     build_as2(args)

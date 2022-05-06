@@ -31,12 +31,12 @@ git clone https://github.com/eProsima/foonathan_memory_vendor.git \
 cd $AEROSTACK2_WORKSPACE/src
 
 # CHECK IF THIS IS NECESSARY
-#git clone --recursive https://github.com/eProsima/Fast-DDS.git -b v2.0.0 ~/FastDDS-2.0.0 \
-#&& cd ~/FastDDS-2.0.0\
-#&& mkdir build && cd build\
-#&& cmake -DTHIRDPARTY=ON -DSECURITY=ON .. \
-#&& make -j$(nproc --all) \
-#&& sudo make install 
+git clone --recursive https://github.com/eProsima/Fast-DDS.git -b v2.0.0 ~/FastDDS-2.0.0 \
+&& cd ~/FastDDS-2.0.0\
+&& mkdir build && cd build\
+&& cmake -DTHIRDPARTY=ON -DSECURITY=ON .. \
+&& make -j$(nproc --all) \
+&& sudo make install 
 
 source ~/.bashrc
 
