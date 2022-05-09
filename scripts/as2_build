@@ -1,0 +1,45 @@
+#!/bin/bash
+
+usage() {
+    echo "usage: $0 $CMD  [-h] [--ros2-only] [<pkg>]
+
+AS2 build
+
+positional arguments:
+  pkg          build up to PKG
+
+optional arguments:
+  -h, --help   show this help message and exit
+  --ros2-only  use only the ros2 packages" 1>&2; exit 1;
+}
+
+colcon_build() {
+    pkg=$1
+    if [[ -z $pkg ]]; then
+        source /opt/ros/foxy/setup.bash && cd ${AEROSTACK2_WORKSPACE} && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+    else
+        source /opt/ros/foxy/setup.bash ; source ${AEROSTACK2_WORKSPACE}/install/setup.bash && cd ${AEROSTACK2_WORKSPACE} && colcon build --packages-up-to ${pkg} --allow-overriding ${pkg} --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+    fi
+}
+
+positional_args=()
+
+while [[ $# -gt 0 ]]; do case $1 in
+    -h | --help )
+        usage
+        exit 1
+        ;;
+    -* | --* )
+        usage
+        exit 1
+        ;;
+    * )
+        pkg=$1
+        positional_args+=("$1")
+        shift
+        ;;
+esac; done
+
+set -- "${positional_args[@]}" # restore positional parameters
+
+colcon_build ${positional_args[@]}
