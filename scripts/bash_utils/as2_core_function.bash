@@ -47,8 +47,8 @@ case $CMD in
     ;;
     clean )
         # source as2_clean ${OPT_ARGS[@]} $*
-        echo "cleaning... with args: ${OPT_ARGS[@]}"
-        ;;
+        source $AEROSTACK2_STACK/scripts/bash_utils/as2_clean.bash
+    ;;
     project )
         # source as2_clean ${OPT_ARGS[@]} $*
         # parse the arguments without the first one into the var $ARGS

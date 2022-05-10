@@ -32,6 +32,13 @@ _as2_completion()
                 COMPREPLY=( $(compgen -W "${as2_pkgs}" ${cur}) )
                 return 0
             fi
+            if [[ ${prev} =~ 'clean' ]] ; then
+                COMPREPLY=( $(compgen -W "${as2_pkgs}" ${cur}) )
+                # append the opts to the COMPREPLY array
+                opts="--all --help"
+                COMPREPLY=( ${COMPREPLY[@]} $(compgen -W "${opts}" -- ${cur}) )
+                return 0
+            fi
         ;;
     esac
 }
