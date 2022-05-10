@@ -12,7 +12,7 @@ function list_packages(){
     if [ -f $package/package.xml ]; then
       path=$package
       # while path is not root
-      while [ "$path" != "/" ]; do
+      while [ "$path" != "$AEROSTACK2_WORKSPACE" ]; do
         # check if COLCON_IGNORE file exists in path
         if [ -f $path/COLCON_IGNORE ]; then
           add_package=0
