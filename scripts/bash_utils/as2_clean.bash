@@ -58,7 +58,7 @@ if [ $clean_all -eq 1 ]; then
     echo ""
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "Cleaning all"
-        cd ${AEROSTACK2_WORKSPACE} && rm -rf build install log
+        cd ${AEROSTACK2_WORKSPACE} && rm -rf build install log > /dev/null
     else
         echo "Canceled"
         exit 1
