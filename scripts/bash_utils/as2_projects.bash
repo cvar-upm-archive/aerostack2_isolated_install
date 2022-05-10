@@ -1,6 +1,7 @@
 #!/bin/bash
 PROJECTS_URL="https://raw.githubusercontent.com/aerostack2-developers/aerostack2/main/installers/projects.repos"
 
+verbose=0
 function check_init(){
   # echo -e "\n${yellowColour}[*]${endColour}${grayColour} Checking internet connection...\n${endColour}"
   if [ -z "$AEROSTACK2_PROJECTS" ]; then
@@ -40,7 +41,11 @@ function list_projects(){
         project=$(cat <<< $projects | awk 'NR=='$i'{print $1}')
         url=$(cat <<< $urls | awk 'NR=='$i'{print $1}')
         version=$(cat <<< $versions | awk 'NR=='$i'{print $1}')
-        echo -e "$blueColour$i$endColour: $project $yellowColour[$version]$endColour -> $url" #, url : $url"
+        if [ $verbose -eq 0 ]; then
+          echo -e "$blueColour$i$endColour: $project $yellowColour[$version]$endColour"
+        else 
+          echo -e "$blueColour$i$endColour: $project $yellowColour[$version]$endColour -> $url" #, url : $url"
+        fi
     done
   echo ""
 }
@@ -51,6 +56,7 @@ function helpPanel(){
   echo -e "\t${redColour}[-h]${endColour}  Show this help"
   echo -e "\t${redColour}[-i]${endColour}  Install projects by id"
   echo -e "\t${redColour}[-n]${endColour}  Install projects by name"
+  echo -e "\t${redColour}[-v]${endColour}  Verbose mode"
   echo ""
   exit 0
 }
@@ -76,7 +82,7 @@ function install_project(){
     echo -e "\n${yellowColour}[*]${endColour} Installing project ${grayColour}$project${endColour} ...\n"
     check_if_project_exists $project
     if [ $? -eq 1 ]; then
-      echo -e "${redColour}[!]${endColour}${grayColour} Project $project already exists.${endColour}"
+      echo -e "${redColour}[!]${endColour}${grayColour} Project $project already exists.${endColour}\n"
       return 1
     fi
     cmd="git clone --branch $version $url $AEROSTACK2_PROJECTS$project"
@@ -124,17 +130,18 @@ function install_by_name(){
 check_init
 parameter_enable=0
 
-while getopts "li:n:h" arg; do
+while getopts "vli:n:h" arg; do
 		case $arg in
-			l) list_projects && let parameter_enable+=1;;
-      i) install_by_id $OPTARG && let parameter_enable+=1;;
-      n) install_by_name $OPTARG && let parameter_enable+=1;;
+      v) verbose=1;;
+			l) list_projects ; let parameter_enable+=2;;
+      i) install_by_id $OPTARG ;let parameter_enable+=1;;
+      n) install_by_name $OPTARG ;let parameter_enable+=1;;
 			h) helpPanel;;
 		esac
 	done
 
 if [ $parameter_enable -eq 0 ]; then
-  echo -e "\n${redColour}[*]${endColour}${grayColour} No parameter specified${endColour}"
+  echo -e "\n${redColour}[*]${endColour}${grayColour} No option specified${endColour}"
   helpPanel
 fi
 

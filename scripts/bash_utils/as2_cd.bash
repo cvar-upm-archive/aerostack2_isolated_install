@@ -3,8 +3,13 @@
 source $AEROSTACK2_STACK/scripts/bash_utils/argparser.bash
 arg_parse $@
 
-pkg=${POS_ARGS[0]}
-route=$(${AEROSTACK2_STACK}/scripts/bash_utils/as2_core_function.bash list -v --list-format | sed -e 's/ /\n/g' | grep -m 1 $pkg -A1 | tail -n 1)
+if [[ $TERM_EXTENSION == ".zsh" ]]; then
+  pkg=${POS_ARGS[1]}
+else
+  pkg=${POS_ARGS[0]}
+fi
+
+route=$(${AEROSTACK2_STACK}/scripts/bash_utils/as2_core_function.bash list -v --list-format | sed -e 's/ /\n/g' | grep -E "^$pkg\$" -m 1 -A1| tail -n 1)
 
 if [ -z "$route" ]; then
   echo "package $pkg not found" >&2

@@ -45,11 +45,11 @@ function list_packages(){
 }
 
 function usage(){
-  echo -e "\nUtil for installing Aerostack2 projects from github\n"
-  echo -e "\t${redColour}[-l]${endColour}  List available projects"
-  echo -e "\t${redColour}[-h]${endColour}  Show this help"
-  echo -e "\t${redColour}[-i]${endColour}  Install projects by id"
-  echo -e "\t${redColour}[-n]${endColour}  Install projects by name"
+  echo -e "\nUtil for listing ROS2 packages inside Aerostack 2\n"
+  echo -e "\t${redColour}[-h , --help ] ${endColour}  Show this help"
+  echo -e "\t${redColour}[-v , --verbose ]${endColour} Verbose output showing the paths of the packages"
+  echo -e "\t${redColour}[-p , --plain ] ${endColour}  Disable colour output"
+  echo -e "\t${redColour}[--list-format ] ${endColour}  List packages in a different format"
   echo ""
   exit 0
 }
