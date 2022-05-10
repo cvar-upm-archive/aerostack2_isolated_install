@@ -26,6 +26,7 @@ AS2 commands:
     list                list all packages
     build               build help
     clean               clean workspace
+    project             list and install aerostack2 projects
     run" 1>&2; exit 1;
 }
 
