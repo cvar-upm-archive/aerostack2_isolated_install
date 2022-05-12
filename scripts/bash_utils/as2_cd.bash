@@ -9,6 +9,11 @@ else
   pkg=${POS_ARGS[0]}
 fi
 
+if [ -z ${pkg} ]; then 
+  cd $AEROSTACK2_STACK
+
+else
+
 route=$(${AEROSTACK2_STACK}/scripts/bash_utils/as2_core_function.bash list -v --list-format | sed -e 's/ /\n/g' | grep -E "^$pkg\$" -m 1 -A1| tail -n 1)
 
 if [ -z "$route" ]; then
@@ -17,5 +22,6 @@ else
   cd $route
 fi
 
+fi 
 unset route pkg CMD OPT_ARGS SHORT_OPTS LONG_OPTS POS_ARGS ALL_ARGS # clean up 
 
