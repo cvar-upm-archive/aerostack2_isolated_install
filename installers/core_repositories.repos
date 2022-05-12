@@ -13,9 +13,9 @@ repositories:
     url: https://github.com/aerostack2-developers/as2_control_command_handlers.git
     version: main
 
-  stack/core/as2_motion_command_handlers:
+  stack/core/motion_reference_handlers:
     type: git 
-    url: https://github.com/aerostack2-developers/as2_motion_command_handlers.git
+    url: https://github.com/aerostack2-developers/motion_reference_handlers.git
     version: main
   
   stack/core/gps_utils:
