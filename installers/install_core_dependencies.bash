@@ -16,7 +16,7 @@ sudo apt install ros-${ROS_DISTRO}-geographic-msgs -y &&\
 sudo apt install libgeographic-dev geographiclib-tools &&\
 sudo ln -s /usr/share/cmake/geographiclib/FindGeographicLib.cmake /usr/share/cmake-*/Modules/ &&\
 sudo apt-get install -y libeigen3-dev -y &&\
-sudo pip3 install -U empy pyros-genmsg setuptools &&\
+sudo pip3 install -U empy pyros-genmsg setuptools jinja2 &&\
 sudo apt install libgoogle-glog* -y &&\
 sudo apt install libgflags* -y &&\
 sudo apt install libnlopt-cxx-dev -y &&\
