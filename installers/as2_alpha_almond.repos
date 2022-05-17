@@ -60,6 +60,10 @@ repositories:
      url: https://github.com/aerostack2-developers/controller_plugin_speed_controller
      version: main
 
+  stack/motion_control/trajectory_generator:
+     type: git 
+     url: https://github.com/aerostack2-developers/trajectory_generator.git
+     version: main
  
 #----------------------------------------------------------------------------
 # Hardware Interface 
