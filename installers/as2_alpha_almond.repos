@@ -145,4 +145,10 @@ repositories:
     url: https://github.com/aerostack2-developers/follow_path_plugins.git
     version: main
 
-
+#----------------------------------------------------------------------------
+# Thirdparty    
+#----------------------------------------------------------------------------
+  thirdparty/ros_ign:
+    type: git 
+    url: https://github.com/aerostack2-developers/ros_ign.git
+    version: main
