@@ -1,19 +1,14 @@
-# aerostack2
+# Aerostack2
 
-### Previous dependencies
-Make sure to have installed ros2 via Debian Packages [[Foxy]](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html).
+Aerostack2 is a framework developed to fly aerial platforms using ROS2.
 
-### Aerostack2 installation
-```
-mkdir -p ${HOME}/aerostack2_ws/src/ && cd ${HOME}/aerostack2_ws/src/
-```
-```
-git clone https://github.com/aerostack2-developers/aerostack2.git
-```
-```
-cd aerostack2/installers && chmod +x *
-```
-```
-./setup_aerostack2.bash
-```
+Most important features:
+- Natively developed on ROS2
+- Complete modularity, allowing elements to be changed or interchanged without affecting the rest of the system
+- Independence of the aerial platform.
+- Project-oriented, allowing to install and use only the necessary packages for the application to be developed. 
+- Swarming orientation.
 
+Installation instructions can be found [[here]](https://github.com/aerostack2-developers/aerostack2/wiki/Install-Aerostack2).
+
+Please visit the [[Aerostack2 Wiki]](https://github.com/aerostack2-developers/aerostack2/wiki) for a complete documentation.
