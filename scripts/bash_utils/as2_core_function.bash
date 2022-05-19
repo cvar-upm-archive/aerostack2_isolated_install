@@ -32,27 +32,27 @@ AS2 commands:
 
 # put arguments in an env variables
 
-source $AEROSTACK2_STACK/scripts/bash_utils/argparser.bash
+source $AEROSTACK2_PATH/scripts/bash_utils/argparser.bash
 arg_parse $@
 
 
 case $CMD in
     build )
         # echo "building... with args: ${OPT_ARGS[@]}"
-        source $AEROSTACK2_STACK/scripts/bash_utils/as2_build.bash
+        source $AEROSTACK2_PATH/scripts/bash_utils/as2_build.bash
     ;;
     list )
         # echo "building... with args: ${OPT_ARGS[@]}"
-        source $AEROSTACK2_STACK/scripts/bash_utils/as2_list.bash
+        source $AEROSTACK2_PATH/scripts/bash_utils/as2_list.bash
     ;;
     clean )
         # source as2_clean ${OPT_ARGS[@]} $*
-        source $AEROSTACK2_STACK/scripts/bash_utils/as2_clean.bash
+        source $AEROSTACK2_PATH/scripts/bash_utils/as2_clean.bash
     ;;
     project )
         # source as2_clean ${OPT_ARGS[@]} $*
         # parse the arguments without the first one into the var $ARGS
-        source $AEROSTACK2_STACK/scripts/bash_utils/as2_projects.bash ${ALL_ARGS[@]:1}
+        source $AEROSTACK2_PATH/scripts/bash_utils/as2_projects.bash ${ALL_ARGS[@]:1}
     ;;
     * )
         usage

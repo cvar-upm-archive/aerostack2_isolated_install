@@ -1,7 +1,6 @@
 # as2 completion
 
-as2_pkgs=$(${AEROSTACK2_STACK}/scripts/as2.bash --list-format list )
-
+as2_pkgs=$(${AEROSTACK2_PATH}/scripts/as2.bash --list-format list )
 _as2_completion()
 {
     local cur prev opts

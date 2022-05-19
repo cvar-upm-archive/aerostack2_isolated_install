@@ -16,3 +16,8 @@ repositories:
     type: git
     url: https://github.com/aerostack2-developers/project_copilot.git
     version: main
+
+  projects/mbzirc:
+    type: git
+    url: https://github.com/aerostack2-developers/project_mbzirc.git
+    version: main

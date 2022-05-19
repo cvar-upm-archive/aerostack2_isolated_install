@@ -5,7 +5,7 @@ verbose=0
 function check_init(){
   # echo -e "\n${yellowColour}[*]${endColour}${grayColour} Checking internet connection...\n${endColour}"
   if [ -z "$AEROSTACK2_PROJECTS" ]; then
-    echo -e "\n${redColour}[!]${endColour}${grayColour} AEROSTACK2_STACK environment variable is not set.\n${endColour}"
+    echo -e "\n${redColour}[!]${endColour}${grayColour} AEROSTACK2_PATH environment variable is not set.\n${endColour}"
     exit 1
   fi
 
