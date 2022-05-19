@@ -28,7 +28,7 @@ else
         # enable custom AS2 bash completions
         source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash
         
-        if [ -f "$AEROSTACK2_WORKSPACE/install/setup$TERM_EXTENSION" ]; then
+        if [[ -f "$AEROSTACK2_WORKSPACE/install/setup$TERM_EXTENSION" && ! -z "$ROS_DISTRO" ]]; then
             source $AEROSTACK2_WORKSPACE/install/setup$TERM_EXTENSION
         fi
         
