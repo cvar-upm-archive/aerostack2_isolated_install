@@ -28,8 +28,8 @@ else
         # enable custom AS2 bash completions
         source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash
         
-        if [ -f "$AEROSTACK2_WORKSPACE/install/setup_env$TERM_EXTENSION" ]; then
-            source $AEROSTACK2_WORKSPACE/install/setup_env$TERM_EXTENSION
+        if [ -f "$AEROSTACK2_WORKSPACE/install/setup$TERM_EXTENSION" ]; then
+            source $AEROSTACK2_WORKSPACE/install/setup$TERM_EXTENSION
         fi
         
     fi
