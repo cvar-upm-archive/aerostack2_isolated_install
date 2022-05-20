@@ -44,3 +44,4 @@ _as2_completion()
 
 complete -F _as2_completion as2
 complete -F _as2_completion as2.bash
+complete -F _as2_completion ${AEROSTACK2_PATH}/scripts/as2.bash

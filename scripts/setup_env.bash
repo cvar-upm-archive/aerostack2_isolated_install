@@ -10,7 +10,6 @@ fi
 if [ -z "$AEROSTACK2_PATH" ]; then
     echo "AEROSTACK2_PATH env var is unset. Please set it to the path of the AEROSTACK2_PATH folder"
 else
-    if [ -z "$AEROSTACK2_PROJECTS" ]; then
         
         export AEROSTACK2_WORKSPACE=$(dirname $(dirname ${AEROSTACK2_PATH}))
         export AEROSTACK2_PROJECTS="$AEROSTACK2_PATH/projects/"
@@ -26,12 +25,10 @@ else
         
         alias as2="source $AEROSTACK2_PATH/scripts/as2.bash"
         # enable custom AS2 bash completions
-        source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash
         
         if [[ -f "$AEROSTACK2_WORKSPACE/install/setup$TERM_EXTENSION" && ! -z "$ROS_DISTRO" ]]; then
             source $AEROSTACK2_WORKSPACE/install/setup$TERM_EXTENSION
         fi
-        
-    fi
+        source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash
     
 fi
