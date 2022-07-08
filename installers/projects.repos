@@ -21,3 +21,8 @@ repositories:
     type: git
     url: https://github.com/aerostack2-developers/project_mbzirc.git
     version: main
+    
+  projects/dji_m210_basic_mission:
+    type: git
+    url: git@github.com:aerostack2-developers/project_dji_m210_basic_mission.git
+    version: main
