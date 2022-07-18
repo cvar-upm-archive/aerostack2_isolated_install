@@ -7,10 +7,6 @@ repositories:
     url: https://github.com/aerostack2-developers/project_f330_pixhawk.git
     version: main
 
-  projects/pixhawk_racing_simulation:
-    type: git
-    url: git@github.com:aerostack2-developers/project_pixhawk_racing_simulation.git
-    version: main
 
   projects/simulation_pixhawk_gazebo:
     type: git 
@@ -32,6 +28,8 @@ repositories:
     url: git@github.com:aerostack2-developers/project_dji_m210_basic_mission.git
     version: main
 
-
-
+  projects/pixhawk_racing_simulation:
+    type: git
+    url: git@github.com:aerostack2-developers/project_pixhawk_racing_simulation.git
+    version: main
 
