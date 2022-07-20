@@ -37,6 +37,15 @@ repositories:
     version: main
 
 #----------------------------------------------------------------------------
+# State Estimator 
+#----------------------------------------------------------------------------
+
+  stack/state_estimator/basic_state_estimator:
+    type: git 
+    url: https://github.com/aerostack2-developers/basic_state_estimator.git
+    version: main
+
+#----------------------------------------------------------------------------
 # Motion_control
 #----------------------------------------------------------------------------
 
