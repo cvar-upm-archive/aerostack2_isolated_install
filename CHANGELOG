@@ -1,4 +1,11 @@
----- v0.2.0 (19-07-2022) ----
+---- v0.2.0 (22-07-2022) ----
+
+basic_state_estimator first release
+usv_ignition_platform first release
+behaviour_trees first release
+
+basic_tf_tree_generator deprecated
+ros_ign deprecated
 
 as2_msgs
     GoToWaypoint action: new yaw_mode_flag to replace ignore_pose_yaw
@@ -22,9 +29,6 @@ motion_reference_handlers
     Multiple instances bug fixed
     Added frame_id to handlers
     Minor bugs fixed
-
-basic_state_estimator
-    First release
 
 controller_manager
     New launchers with config files
@@ -58,9 +62,6 @@ ignition_platform
     Added gps sensor
     Odom refactorization
 
-usv_ignition_platform
-    First release
-
 ignition_assets
     Added crazyflie model (WIP)
     Added verbose mode to ign launcher
@@ -80,9 +81,6 @@ python_interface
     Fixed bug on python method overload
     Odom refactorization
     set_home changed into public method
-
-behaviour_trees
-    First release
 
 as2_basic_behaviours
     New launchers with config files
@@ -130,10 +128,6 @@ follow_path_behaviour
 follow_path_plugins
     Plugins renamed following name convention
     Improved goal condition in traj plugin
-
-basic_tf_tree_generator deprecated
-
-ros_ign deprecated
 
 ---- v0.1.0 (13-05-2022) ----
 
