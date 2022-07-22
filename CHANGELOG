@@ -61,6 +61,7 @@ ignition_platform
     New launcher with config files
     Added gps sensor
     Odom refactorization
+    Added frame and TF to sensors
 
 ignition_assets
     Added crazyflie model (WIP)
@@ -74,6 +75,7 @@ ignition_assets
     New USV model
     new GPS sensor
     Minor fixes and improvements
+    Added lidar sensor
 
 python_interface
     Added yaw_mode argument to follow_path
