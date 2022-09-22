@@ -9,6 +9,7 @@ jobs:
         shell: bash -leo pipefail {0}
     steps:
       # - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - run: echo $(pwd) ; ls -R 
       - name: Create Colcon WS
         run:
           mkdir ${{ github.workspace }}/aerostack_ws/src -p ;
