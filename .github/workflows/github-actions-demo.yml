@@ -7,20 +7,21 @@ jobs:
     defaults:
       run:
         shell: bash -leo pipefail {0}
+        working-directory: $HOME
     steps:
       # - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Create Colcon WS
         run:
-          mkdir $GITHUB_WORKSPACE/aerostack_ws/src -p ;
-          cd $GITHUB_WORKSPACE/aerostack_ws/src ;
+          mkdir $HOME/aerostack_ws/src -p ;
+          cd $HOME/aerostack_ws/src ;
       - name: Check out repository code
         uses: actions/checkout@v3
         with:
-          path: $GITHUB_WORKSPACE/aerostack_ws/src/aerostack2
+          path: $HOME/aerostack_ws/src/aerostack2
       - run: echo $(pwd) ; ls -R 
       - name: Installing AS2 
-        run: cd $GITHUB_WORKSPACE/aerostack_ws/src/aerostack2/installers ; chmod +x * ; ./install_core_dependencies.bash
+        run: cd $HOME/aerostack_ws/src/aerostack2/installers ; chmod +x * ; ./install_core_dependencies.bash
       - name: Downloading Repos
-        run: cd $GITHUB_WORKSPACE/aerostack_ws/src/aerostack2/; vcs import --recursive < ./installers/as2_beta_beetroot.repos
+        run: cd $HOME/aerostack_ws/src/aerostack2/; vcs import --recursive < ./installers/as2_beta_beetroot.repos
       - name: Compile
-        run: cd $GITHUB_WORKSPACE/aerostack_ws/ ; source /opt/ros/galactic/setup.bash && colcon build
+        run: cd $HOME/aerostack_ws/ ; source /opt/ros/galactic/setup.bash && colcon build
