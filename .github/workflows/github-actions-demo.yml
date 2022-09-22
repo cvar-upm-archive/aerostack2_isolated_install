@@ -4,6 +4,9 @@ jobs:
   ROS2-tests:
     runs-on: self-hosted
     container: osrf/ros:galactic-desktop
+    defaults:
+      run:
+        shell: bash -leo pipefail {0}
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
