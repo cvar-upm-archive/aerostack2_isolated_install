@@ -9,6 +9,9 @@ jobs:
         shell: bash -leo pipefail {0}
     steps:
       # - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: 'Cleanup build folder'
+        run: |
+          rm -rf ./* || true
       - run: echo $(pwd) ; ls -R 
       - name: Create Colcon WS
         run:
