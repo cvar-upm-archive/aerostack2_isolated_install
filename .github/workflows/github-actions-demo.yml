@@ -16,7 +16,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
         with:
-          path: ${{ github.workspace }}/aerostack_ws/src/aerostack2
+          path: aerostack_ws/src/aerostack2
       - run: echo $(pwd) ; ls -R 
       - name: Installing AS2 
         run: cd ${{ github.workspace }}/aerostack_ws/src/aerostack2/installers ; chmod +x * ; ./install_core_dependencies.bash
