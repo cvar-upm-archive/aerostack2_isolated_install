@@ -13,6 +13,7 @@ jobs:
           cd $GITHUB_WORKSPACE/aerostack_ws/src ;
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: List files in the repository
-        run: echo $(pwd) && ls .
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+        with:
+          path: $GITHUB_WORKSPACE/aerostack_ws/src/
+      - name: Compile
+      - run: cd $GITHUB_WORKSPACE/aerostack_ws/ ; source /opt/galactic/setup.bash && colcon build;
