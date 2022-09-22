@@ -7,7 +7,6 @@ jobs:
     defaults:
       run:
         shell: bash -leo pipefail {0}
-        working-directory: $HOME
     steps:
       # - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Create Colcon WS
