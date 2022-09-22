@@ -19,4 +19,4 @@ jobs:
         with:
           path: $GITHUB_WORKSPACE/aerostack_ws/src/
       - name: Compile
-        run: cd $GITHUB_WORKSPACE/aerostack_ws/ ; source /opt/galactic/setup.bash && colcon build;
+        run: cd $GITHUB_WORKSPACE/aerostack_ws/ ; source /opt/ros/galactic/setup.bash && colcon build;
