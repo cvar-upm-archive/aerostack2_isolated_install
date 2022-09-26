@@ -1,7 +1,5 @@
 # Ubuntu 20.04 with nvidia-docker2 beta opengl support
 FROM osrf/ros:galactic-desktop
-ENV USERNAME=ros
-
 USER root
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -48,6 +46,7 @@ RUN apt-get update -qq \
 USER $USERNAME
 
 # When running a container start in the developer's home folder
+RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 WORKDIR /home/$USERNAME
 
