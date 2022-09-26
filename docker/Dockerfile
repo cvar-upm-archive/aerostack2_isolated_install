@@ -46,6 +46,7 @@ RUN apt-get update -qq \
 USER $USERNAME
 
 # When running a container start in the developer's home folder
+run mkdir -p /root/.ssh/
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 WORKDIR /home/$USERNAME
