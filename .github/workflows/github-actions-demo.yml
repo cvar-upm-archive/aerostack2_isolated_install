@@ -1,0 +1,19 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  ROS2-tests:
+    runs-on: self-hosted
+    container: ubuntu:20.04
+    defaults:
+      run:
+        shell: bash -leo pipefail {0}
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install docker
+        run: |
+          apt update
+          apt install docker.io -y
+      - name: building docker image
+        run: docker build -f docker/Dockerfile -t aerostack2:latest .
+
