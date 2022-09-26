@@ -41,6 +41,10 @@ case $CMD in
         # echo "building... with args: ${OPT_ARGS[@]}"
         source $AEROSTACK2_PATH/scripts/bash_utils/as2_build.bash
     ;;
+    test )
+        # echo "building... with args: ${OPT_ARGS[@]}"
+        source $AEROSTACK2_PATH/scripts/bash_utils/as2_test.bash
+    ;;
     list )
         # echo "building... with args: ${OPT_ARGS[@]}"
         source $AEROSTACK2_PATH/scripts/bash_utils/as2_list.bash
