@@ -16,10 +16,10 @@ repositories:
     url: git@github.com:aerostack2-developers/as2_core.git
     version: main
 
-  stack/core/gps_utils:
-    type: git
-    url: git@github.com:aerostack2-developers/gps_utils.git
-    version: parias-devel
+  # stack/core/gps_utils:
+  #   type: git
+  #   url: git@github.com:aerostack2-developers/gps_utils.git
+  #   version: parias-devel
 
 #----------------------------------------------------------------------------
 # Handlers 
