@@ -11,7 +11,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Install docker
-        run: sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin 
+        run: apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin 
       - name: building docker image
         run: docker build -f docker/Dockerfile -t aerostack2:latest .
 
