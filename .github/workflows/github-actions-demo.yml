@@ -13,7 +13,7 @@ jobs:
       - name: Install docker
         run: |
           apt update
-          apt install docker.io
+          apt install docker.io -y
       - name: building docker image
         run: docker build -f docker/Dockerfile -t aerostack2:latest .
 
