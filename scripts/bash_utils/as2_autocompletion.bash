@@ -27,6 +27,10 @@ _as2_completion()
                 COMPREPLY=( $(compgen -W "${as2_pkgs}" ${cur}) )
                 return 0
             fi
+            if [[ ${prev} =~ 'test' ]] ; then
+                COMPREPLY=( $(compgen -W "${as2_pkgs}" ${cur}) )
+                return 0
+            fi
             if [[ ${prev} =~ 'cd' ]] ; then
                 COMPREPLY=( $(compgen -W "${as2_pkgs}" ${cur}) )
                 return 0
