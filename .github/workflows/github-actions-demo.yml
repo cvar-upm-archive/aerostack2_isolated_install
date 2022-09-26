@@ -3,30 +3,13 @@ on: [push]
 jobs:
   ROS2-tests:
     runs-on: self-hosted
+    container: ubuntu-latest
     defaults:
       run:
         shell: bash -leo pipefail {0}
     steps:
-      # - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: 'Cleanup build folder'
-        run: |
-          rm -rf ./* || true
-      - run: echo $(pwd) ; ls -R 
-      - name: Create Colcon WS
-        run:
-          mkdir aerostack_ws/src -p ;
-          cd aerostack_ws/src ;
       - name: Check out repository code
         uses: actions/checkout@v3
-        with:
-          path: aerostack_ws/src/aerostack2
-      - run: echo $(pwd) ; ls -R 
-      # - name: Installing AS2 
-      #   run: cd aerostack_ws/src/aerostack2/installers ; chmod +x * ; ./install_core_dependencies.bash
-      # - name: Downloading Repos
-      #   run: aerostack_ws/src/aerostack2/; vcs import --recursive < ./installers/as2_beta_beetroot.repos
-      # - name: Compile
-      #   run: aerostack_ws/ ; source /opt/ros/galactic/setup.bash && colcon build
       - name: building docker image
         run: docker build -f docker/Dockerfile -t aerostack2:latest .
 
