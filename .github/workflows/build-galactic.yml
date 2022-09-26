@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: build-galactic
 on: [push]
 jobs:
   ROS2-tests:
