@@ -3,7 +3,6 @@ on: [push]
 jobs:
   ROS2-tests:
     runs-on: self-hosted
-    container: osrf/ros:galactic-desktop
     defaults:
       run:
         shell: bash -leo pipefail {0}
@@ -22,9 +21,12 @@ jobs:
         with:
           path: aerostack_ws/src/aerostack2
       - run: echo $(pwd) ; ls -R 
-      - name: Installing AS2 
-        run: cd aerostack_ws/src/aerostack2/installers ; chmod +x * ; ./install_core_dependencies.bash
-      - name: Downloading Repos
-        run: aerostack_ws/src/aerostack2/; vcs import --recursive < ./installers/as2_beta_beetroot.repos
-      - name: Compile
-        run: aerostack_ws/ ; source /opt/ros/galactic/setup.bash && colcon build
+      # - name: Installing AS2 
+      #   run: cd aerostack_ws/src/aerostack2/installers ; chmod +x * ; ./install_core_dependencies.bash
+      # - name: Downloading Repos
+      #   run: aerostack_ws/src/aerostack2/; vcs import --recursive < ./installers/as2_beta_beetroot.repos
+      # - name: Compile
+      #   run: aerostack_ws/ ; source /opt/ros/galactic/setup.bash && colcon build
+      - name: building docker image
+        run: docker build -f docker/Dockerfile -t aerostack2:latest .
+
