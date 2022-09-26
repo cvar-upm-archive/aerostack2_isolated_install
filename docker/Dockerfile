@@ -52,7 +52,7 @@ WORKDIR /home/$USERNAME
 # install aerostack2
 RUN mkdir -p /home/${USERNAME}/aerostack2_ws/src/mbzirc
 RUN cd /home/$USERNAME/aerostack2_ws/src \
-    && git clone https://github.com/aerostack2-developers/aerostack2.git -b CI-Tests
+    && git clone https://github.com/aerostack2-developers/aerostack2.git 
 
 ENV AEROSTACK2_PATH /home/$USERNAME/aerostack2_ws/src/aerostack2
 ENV AEROSTACK2_WORKSPACE /home/$USERNAME/aerostack2_ws
@@ -75,6 +75,7 @@ USER $USERNAME
 WORKDIR /home/$USERNAME/aerostack2_ws/src/aerostack2
 RUN /bin/bash -c 'sed -i "s|git@github.com:|https://github.com/|" installers/as2_rolling.repos'
 RUN echo $(pwd) && vcs import --recursive < ./installers/as2_rolling.repos
+RUN /bin/bash -c 'python3 installers/install_package_dependencies.py --repos ./installers/as2_rolling.repos -p .'
 
 # RUN as2 build
 WORKDIR /home/${USERNAME}/aerostack2_ws
