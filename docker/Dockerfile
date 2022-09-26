@@ -74,7 +74,7 @@ RUN /bin/bash -c 'bash installers/install_core_dependencies.bash'
 USER $USERNAME
 
 WORKDIR /home/$USERNAME/aerostack2_ws/src/aerostack2
-RUN echo $(pwd) && vcs import --recursive < ./installers/as2_beta_beetrooot.repos
+RUN echo $(pwd) && vcs import --recursive < ./installers/as2_beta_beetroot.repos
 
 # RUN as2 build
 WORKDIR /home/${USERNAME}/aerostack2_ws
