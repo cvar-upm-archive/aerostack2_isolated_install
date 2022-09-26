@@ -3,7 +3,7 @@ on: [push]
 jobs:
   ROS2-tests:
     runs-on: self-hosted
-    container: ubuntu-latest
+    container: ubuntu:20.04
     defaults:
       run:
         shell: bash -leo pipefail {0}
