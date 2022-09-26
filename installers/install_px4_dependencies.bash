@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Todo: add this to a package installer
-#---------------------------------------
-
-# install not ros dependencies
-
 cd $AEROSTACK2_WORKSPACE/src
 mkdir -p thirdparty/
 cd thirdparty
