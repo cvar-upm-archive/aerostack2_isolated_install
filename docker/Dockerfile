@@ -46,13 +46,14 @@ RUN apt-get update -qq \
 USER $USERNAME
 
 # When running a container start in the developer's home folder
+RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 WORKDIR /home/$USERNAME
 
 ## TODO: needed? Installation scripts are not launched directly and as2 utils not used...
 # install aerostack2
 RUN mkdir -p /home/${USERNAME}/aerostack2_ws/src/mbzirc
 RUN cd /home/$USERNAME/aerostack2_ws/src \
-    && git clone https://github.com/aerostack2-developers/aerostack2.git
+    && git clone git@github.com:aerostack2-developers/aerostack2.git 
 
 ENV AEROSTACK2_PATH /home/$USERNAME/aerostack2_ws/src/aerostack2
 ENV AEROSTACK2_WORKSPACE /home/$USERNAME/aerostack2_ws
@@ -73,7 +74,7 @@ RUN /bin/bash -c 'bash installers/install_core_dependencies.bash'
 
 USER $USERNAME
 WORKDIR /home/$USERNAME/aerostack2_ws/src/aerostack2
-RUN vcs import --recursive < installers/as2_beta_beetrooot.repos
+RUN echo $(pwd) && vcs import --recursive < ./installers/as2_beta_beetroot.repos
 
 # RUN as2 build
 WORKDIR /home/${USERNAME}/aerostack2_ws
