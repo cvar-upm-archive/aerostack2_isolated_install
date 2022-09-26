@@ -4,15 +4,15 @@
 usage() {
     echo "usage: $0 $CMD  [-h] [-d] [--ros2-only] [<pkg>]
 
-AS2 build
+AS2 test 
+
+Perform test on a package
 
 positional arguments:
   pkg          build up to PKG
 
 optional arguments:
-  -h, --help   show this help message and exit
-  -d, --debug  build in debug mode
-  --ros2-only  use only the ros2 packages" 1>&2; exit 1;
+  -h, --help   show this help message and exit" 1>&2; exit 1;
 }
 
 
@@ -23,9 +23,6 @@ if [ -z "$ROS_DISTRO" ]; then
     exit 1
 fi
 
-BUILD_TYPE="Release"
-
-echo $SHELL
 colcon_test() {
     pkg=$@
     if [[ -z $pkg ]]; then

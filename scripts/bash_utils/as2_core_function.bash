@@ -10,7 +10,7 @@ declare turquoiseColour="\e[0;36m\033[1m"
 declare grayColour="\e[0;37m\033[1m"
 
 usage() {
-    echo "usage: $0 [-h] [--ros2-only] [--ros1-only] [-y] {cd,build,clean,run} ...
+    echo "usage: $0 [-h] [--ros2-only] [--ros1-only] [-y] {cd,build,clean,test,project,run} ...
 
 Aerostack2 toolbox for ease the use of the AS2 pipeline
 
@@ -21,12 +21,13 @@ optional arguments:
   -y, --yes             answer yes to all questions
 
 AS2 commands:
-  {cd,build,clean,run}  action to do
+  {cd,build,clean,test,project,run}  action to do
     cd                  change directory
     list                list all packages
     build               build help
     clean               clean workspace
     project             list and install aerostack2 projects
+    test                run tests
     run" 1>&2; exit 1;
 }
 

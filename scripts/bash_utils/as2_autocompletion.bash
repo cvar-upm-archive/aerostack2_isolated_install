@@ -8,7 +8,7 @@ _as2_completion()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     
-    as2_commands='cd build list clean run project'
+    as2_commands='cd build list clean run project test'
     opts="--help -h -y --ros2-only --ros1-only"
     
     case $cur in
