@@ -36,11 +36,11 @@ RUN apt-get update -qq \
     curl 
 
 # NVIDIA_STUFF
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        nvidia-cuda-toolkit \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean
+# RUN apt-get update && \
+#     apt-get install -y --no-install-recommends \
+#         nvidia-cuda-toolkit \
+#     && rm -rf /var/lib/apt/lists/* \
+#     && apt-get clean
 
 # Commands below run as the developer user
 USER $USERNAME
@@ -87,6 +87,6 @@ RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc ' \
 ENTRYPOINT ["/bin/bash"]
 
 # NVIDIA_STUFF
-ENV NVIDIA_VISIBLE_DEVICES all
-ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
-ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/cuda-10.1/compat/
+# ENV NVIDIA_VISIBLE_DEVICES all
+# ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+# ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/cuda-10.1/compat/
