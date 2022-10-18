@@ -24,10 +24,10 @@ repositories:
 #----------------------------------------------------------------------------
 # Handlers 
 #----------------------------------------------------------------------------
-  stack/core/actuator_command_handlers:
-    type: git 
-    url: git@github.com:aerostack2-developers/actuator_command_handlers.git
-    version: main
+#  stack/core/actuator_command_handlers:
+#    type: git 
+#    url: git@github.com:aerostack2-developers/actuator_command_handlers.git
+#    version: main
 
   stack/core/motion_reference_handlers:
     type: git 
