@@ -64,6 +64,11 @@ repositories:
      type: git 
      url: git@github.com:aerostack2-developers/trajectory_generator.git
      version: main
+
+  stack/libs/pid_controller:
+     type: git 
+     url: git@github.com:aerostack2-developers/pid_controller.git
+     version: main
  
 #----------------------------------------------------------------------------
 # Hardware Interface 
