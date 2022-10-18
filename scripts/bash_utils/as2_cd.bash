@@ -5,13 +5,14 @@ arg_parse "$@"
 
 AEROSTACK_BASE_FOLDERS="['stack','projects']"
 
-route=$("${AEROSTACK2_PATH}"/scripts/bash_utils/as2_core_function.bash list -v --list-format | sed -e 's/ /\n/g' | grep -E "^$pkg\$" -m 1 -A1| tail -n 1)
 
 if [[ $TERM_EXTENSION == ".zsh" ]]; then
     pkg=${POS_ARGS[1]}
 else
     pkg=${POS_ARGS[0]}
 fi
+
+route=$("${AEROSTACK2_PATH}"/scripts/bash_utils/as2_core_function.bash list -v --list-format | sed -e 's/ /\n/g' | grep -E "^$pkg\$" -m 1 -A1| tail -n 1)
 
 if [ -z "${pkg}" ]; then
     route=$AEROSTACK2_PATH
