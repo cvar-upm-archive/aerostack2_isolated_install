@@ -1,6 +1,9 @@
 # as2 completion
 
 as2_pkgs=$(${AEROSTACK2_PATH}/scripts/as2.bash --list-format list )
+as2_projects=$(${AEROSTACK2_PATH}/scripts/as2.bash --list-format --projects list  )
+as2_basic_folders="stack projects"
+
 _as2_completion()
 {
     local cur prev opts
@@ -33,6 +36,8 @@ _as2_completion()
             fi
             if [[ ${prev} =~ 'cd' ]] ; then
                 COMPREPLY=( $(compgen -W "${as2_pkgs}" ${cur}) )
+                COMPREPLY=( ${COMPREPLY[@]} $(compgen -W "${as2_projects}" -- ${cur}) )
+                COMPREPLY=( ${COMPREPLY[@]} $(compgen -W "${as2_basic_folders}" -- ${cur}) )
                 return 0
             fi
             if [[ ${prev} =~ 'clean' ]] ; then

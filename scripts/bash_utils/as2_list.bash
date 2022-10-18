@@ -44,6 +44,24 @@ function list_packages(){
     done
 }
 
+function list_projects(){
+  project_list={};
+  if [ -d "$AEROSTACK2_PROJECTS" ]; then
+  project_list=$(find "$AEROSTACK2_PROJECTS" -maxdepth 1 -mindepth 1 -type d | sort -u)
+  fi 
+  echo -e "\n${yellowColour}[*]${endColour}${greenColour} List of projects:\n${endColour}"
+  for i in "${!project_list[@]}"; do
+    name=$(basename "${project_list}")
+    path=${project_list[$i]}
+    if [ $verbose -eq 0 ]; then
+      echo -e "${greenColour}[$i]${endColour}${grayColour} ${name}${endColour}"
+    else
+      echo -e "${greenColour}[$i]${endColour}${grayColour} ${name}${endColour} -> ${path}"
+    fi
+  done
+
+}
+
 function usage(){
     echo -e "\nUtil for listing ROS2 packages inside Aerostack 2\n"
     echo -e "\t${redColour}[-h , --help ] ${endColour}  Show this help"
@@ -56,6 +74,7 @@ function usage(){
 
 plain=0
 list_format=0
+list_projects=0
 
 for opt in "${OPTS_ARGS[@]}"; do
     # check if the option ends with spaces and remove them
@@ -72,6 +91,8 @@ for opt in "${OPTS_ARGS[@]}"; do
         --list-format)
             list_format=1
         plain=1;;
+        --projects)
+            list_projects=1;;
         -* | --* )
             echo "invalid option: $opt"
             usage
@@ -92,12 +113,17 @@ if [ $plain -eq 1 ]; then
     grayColour=""
 fi
 
+cmd="list_packages"
+if [ $list_projects -eq 1 ]; then
+    cmd="list_projects"
+fi
+
 if [ $list_format -eq 1 ]; then
     if [ $verbose -eq 0 ]; then
-        list_packages | grep -vE 'List|Arg' | awk '{print($2)}' | sed -r '/^\s*$/d'| sort -u | tr '\n' ' '
+        $cmd | grep -vE 'List|Arg' | awk '{print($2)}' | sed -r '/^\s*$/d'| sort -u | tr '\n' ' '
     else
-        list_packages | grep -vE 'List|Arg' | awk '{print($2,$4)}' | sed -r '/^\s*$/d'| sort -u | tr '\n' ' '
+        $cmd | grep -vE 'List|Arg' | awk '{print($2,$4)}' | sed -r '/^\s*$/d'| sort -u | tr '\n' ' '
     fi
 else
-    list_packages
+    $cmd
 fi
