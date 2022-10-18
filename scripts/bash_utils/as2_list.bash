@@ -48,11 +48,12 @@ function list_projects(){
   project_list={};
   if [ -d "$AEROSTACK2_PROJECTS" ]; then
   project_list=$(find "$AEROSTACK2_PROJECTS" -maxdepth 1 -mindepth 1 -type d | sort -u)
+  project_list=($(printf '%s\n' "${project_list[@]}"|sort))
   fi 
   echo -e "\n${yellowColour}[*]${endColour}${greenColour} List of projects:\n${endColour}"
   for i in "${!project_list[@]}"; do
-    name=$(basename "${project_list}")
-    path=${project_list[$i]}
+    name=${project_list[$i]##*/}
+    path=${project_list[$i]##*%}
     if [ $verbose -eq 0 ]; then
       echo -e "${greenColour}[$i]${endColour}${grayColour} ${name}${endColour}"
     else
