@@ -73,18 +73,18 @@ repositories:
 #----------------------------------------------------------------------------
 # Hardware Interface 
 #----------------------------------------------------------------------------
-  # stack/hardware_interface/ignition_platform:
-  #    type: git 
-  #    url: git@github.com:aerostack2-developers/ignition_platform.git
-  #    version: main
+  stack/hardware_interface/ignition_platform:
+     type: git 
+     url: git@github.com:aerostack2-developers/ignition_platform.git
+     version: main
 
 #----------------------------------------------------------------------------
 # Simulation
 #----------------------------------------------------------------------------
-  # simulation/ignition_assets:
-  #   type: git
-  #   url: git@github.com:aerostack2-developers/ignition_assets.git
-  #   version: main
+  simulation/ignition_assets:
+    type: git
+    url: git@github.com:aerostack2-developers/ignition_assets.git
+    version: humble
 
 #----------------------------------------------------------------------------
 # User Interface 
