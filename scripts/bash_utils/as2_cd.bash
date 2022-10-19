@@ -31,7 +31,7 @@ fi
 if [ -z "$route" ]; then
   echo "package $pkg not found" >&2
 else
-  cd "$route" || exit
+  cd "$route"
 fi
     
 unset route pkg CMD OPT_ARGS SHORT_OPTS LONG_OPTS POS_ARGS ALL_ARGS # clean up
