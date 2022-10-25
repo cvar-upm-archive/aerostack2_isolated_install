@@ -52,7 +52,7 @@ WORKDIR /home/$USERNAME
 # install aerostack2
 RUN mkdir -p /home/${USERNAME}/aerostack2_ws/src/mbzirc
 RUN cd /home/$USERNAME/aerostack2_ws/src \
-    && git clone https://github.com/aerostack2-developers/aerostack2.git 
+    && git clone https://github.com/aerostack2/aerostack2.git 
 
 ENV AEROSTACK2_PATH /home/$USERNAME/aerostack2_ws/src/aerostack2
 ENV AEROSTACK2_WORKSPACE /home/$USERNAME/aerostack2_ws
