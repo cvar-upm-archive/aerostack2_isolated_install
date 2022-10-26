@@ -33,3 +33,7 @@ repositories:
     url: git@github.com:aerostack2/project_pixhawk_racing_simulation.git
     version: main
 
+  projects/px4_controller_tuning
+    type: git
+    url: git@github.com:aerostack2/project_px4_controller_tuning.git
+    version: main
