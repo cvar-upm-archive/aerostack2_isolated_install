@@ -2,17 +2,17 @@
 
 
 usage() {
-    echo "usage: $0 $CMD  [-h] [-d] [--ros2-only] [<pkg>]
+    echo "usage: $0 $CMD  [-h] [-d] [-v] <pkg>
 
 AS2 build
 
 positional arguments:
-  pkg          build up to PKG
+  pkg          build up to PKG (default: all)
 
 optional arguments:
   -h, --help   show this help message and exit
   -d, --debug  build in debug mode
-  --ros2-only  use only the ros2 packages" 1>&2; exit 1;
+  -v, --verbose build with verbose" 1>&2; exit 1;
 }
 
 
@@ -24,14 +24,16 @@ if [ -z "$ROS_DISTRO" ]; then
 fi
 
 BUILD_TYPE="Release"
+VERBOSE=""
 
 echo $SHELL
 colcon_build() {
     pkg=$@
     if [[ -z $pkg ]]; then
-        source /opt/ros/$ROS_DISTRO/setup$TERM_EXTENSION && cd ${AEROSTACK2_WORKSPACE} && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+        source /opt/ros/$ROS_DISTRO/setup$TERM_EXTENSION && cd ${AEROSTACK2_WORKSPACE} && colcon build $VERBOSE --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=$BUILD_TYPE
     else
-        source /opt/ros/$ROS_DISTRO/setup$TERM_EXTENSION; source ${AEROSTACK2_WORKSPACE}/install/setup$TERM_EXTENSION && cd ${AEROSTACK2_WORKSPACE} && colcon build --packages-up-to ${pkg} --allow-overriding ${pkg} --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+        source /opt/ros/$ROS_DISTRO/setup$TERM_EXTENSION; source ${AEROSTACK2_WORKSPACE}/install/setup$TERM_EXTENSION && cd ${AEROSTACK2_WORKSPACE} && colcon build $VERBOSE --packages-up-to ${pkg} --allow-overriding ${pkg} --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+
     fi
 }
 
@@ -48,6 +50,9 @@ for opt in "${OPTS_ARGS[@]}"; do
         ;;
     -d | --debug )
         BUILD_TYPE="Debug"
+        ;;
+    -v | --verbose )
+        VERBOSE="--event-handlers console_direct+"
         ;;
     -* | --* )
         echo "invalid option: $opt"

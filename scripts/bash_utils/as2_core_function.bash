@@ -10,14 +10,12 @@ declare turquoiseColour="\e[0;36m\033[1m"
 declare grayColour="\e[0;37m\033[1m"
 
 usage() {
-    echo "usage: $0 [-h] [--ros2-only] [--ros1-only] [-y] {cd,build,clean,test,project,run} ...
+    echo "usage: $0 [-h] [-y] {cd,build,clean,test,project,run} ...
 
 Aerostack2 toolbox for ease the use of the AS2 pipeline
 
 optional arguments:
   -h, --help            show this help message and exit
-  --ros2-only           use only the ros2 packages
-  --ros1-only           use only the ros1 packages
   -y, --yes             answer yes to all questions
 
 AS2 commands:
