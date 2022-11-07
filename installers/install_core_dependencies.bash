@@ -6,4 +6,4 @@ if [[ -z "$ROS_DISTRO" ]]; then
 fi
 
 sudo apt update
-sudo apt install tmux python3-vcstool python3-rosdep python3-pip -y
+sudo apt install tmux python3-vcstool python3-rosdep python3-pip python3-colcon-common-extensions -y
