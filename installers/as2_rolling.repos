@@ -102,6 +102,11 @@ repositories:
 #----------------------------------------------------------------------------
 # Behaviours    
 #----------------------------------------------------------------------------
+  stack/core/as2_behavior:
+    type: git 
+    url: git@github.com:aerostack2/as2_behavior.git
+    version: main
+
   stack/behaviours/as2_basic_behaviours:
     type: git 
     url: git@github.com:aerostack2/as2_basic_behaviours.git
